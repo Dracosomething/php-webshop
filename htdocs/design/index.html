@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="./css/uikit_rtl.min.css" rel="stylesheet" />
+    <link href="./css/uikit.min.css" rel="stylesheet" />
+
+    <title>Stoelen Sleepers</title>
+</head>
+
+<body>
+    <nav class="uk-navbar-container">
+        <div uk-navbar class="uk-margin-xsmall-left uk-margin-medium-right">
+
+            <div class="uk-navbar-left">
+
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a href="#">
+                            <span uk-icon="icon: apple"></span>
+                            <p>Stoelen sleepers</p>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a href="#">
+                            <span uk-icon="icon: list"></span>
+                            <p>Catalogus</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span uk-icon="icon: sign-in"></span>
+                            <p>Inloggen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span uk-icon="icon: file-edit"></span>
+                            <p>Registreren</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span uk-icon="icon: cart"></span>
+                            <p>Winkelwagen</p>
+                        </a>
+                    </li>
+                    <li>
+                        <div>
+                            <div class="uk-navbar-item">
+                                <form class="uk-search uk-search-navbar">
+                                    <span uk-search-icon></span>
+                                    <input class="uk-search-input" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a><span uk-icon="icon: user" class="uk-parent"></span></a>
+                        <div class="uk-navbar-dropdown" uk-drop="boundary: !.uk-navbar; flip: false">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-nav-header">UW GEGEVENS</li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: settings"></span>
+                                        <p>Profiel</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: bag"></span>
+                                        <p>Bestellingen</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: credit-card"></span>
+                                        <p>Facturen</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: refresh"></span>
+                                        <p>Retouren</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: heart"></span>
+                                        <p>Wensenlijst</p>
+                                    </a>
+                                </li>
+                                <br>
+                                <li class="uk-nav-header">CONTACT</li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: info"></span>
+                                        <p>Klantenservice</p>
+                                    </a>
+                                </li>
+                                <li class="uk-nav-divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <span uk-icon="icon: sign-out"></span>
+                                        <p>Uitloggen</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="uk-flex uk-flex-center">
+            <h1>Welkom bij Stoelen Sleepers.</h1>
+        </div>
+        <br>
+        <div class="uk-flex uk-flex-center">
+            <h3>Haal hier de beste materialen voor beginende en profesionele Stoelen Sleepers</h3>
+        </div>
+        <div class="uk-container">
+            <div class="uk-slider-container-offset" uk-slider="autoplay: true; autoplay-interval: 3000; active: first" id="slider-products">
+
+                <div class="uk-position-relative uk-visible-toggle uk-dark" tabindex="-1">
+                    <div class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid">
+                        <div>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="images/photo.jpg" width="1800" height="1200" alt="">
+                                </div>
+                                <div class="uk-card-body">
+                                    <h3 class="uk-card-title">Headline</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="images/dark.jpg" width="1800" height="1200" alt="">
+                                </div>
+                                <div class="uk-card-body">
+                                    <h3 class="uk-card-title">Headline</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="images/light.jpg" width="1800" height="1200" alt="">
+                                </div>
+                                <div class="uk-card-body">
+                                    <h3 class="uk-card-title">Headline</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="images/photo2.jpg" width="1800" height="1200" alt="">
+                                </div>
+                                <div class="uk-card-body">
+                                    <h3 class="uk-card-title">Headline</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="images/photo3.jpg" width="1800" height="1200" alt="">
+                                </div>
+                                <div class="uk-card-body">
+                                    <h3 class="uk-card-title">Headline</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href uk-slidenav-previous
+                        uk-slider-item="previous"></a>
+                    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href uk-slidenav-next
+                        uk-slider-item="next"></a>
+
+                </div>
+
+                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+</body>
+
+</html>
