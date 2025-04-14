@@ -13078,6 +13078,12 @@ iframe[data-uk-cover] {
 .uk-inverse-dark {
   --uk-inverse: dark !important;
 }
+
+.price-text {
+  color: rgb(142, 29, 52);
+  font-weight: bolder;
+}
+
 /* ========================================================================
    Component: Print
  ========================================================================== */

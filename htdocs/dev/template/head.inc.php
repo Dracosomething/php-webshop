@@ -19,7 +19,7 @@
 
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="index.html">
+                        <a href="index.php">
                             <span uk-icon="icon: apple"></span>
                             <p>Stoelen sleepers</p>
                         </a>
@@ -31,25 +31,25 @@
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="catalogue.html">
+                        <a href="catalogue.php">
                             <span uk-icon="icon: list"></span>
                             <p>Catalogus</p>
                         </a>
                     </li>
                     <li>
-                        <a href="login.html">
+                        <a href="login.php">
                             <span uk-icon="icon: sign-in"></span>
                             <p>Inloggen</p>
                         </a>
                     </li>
                     <li>
-                        <a href="register.html">
+                        <a href="register.php">
                             <span uk-icon="icon: file-edit"></span>
                             <p>Registreren</p>
                         </a>
                     </li>
                     <li>
-                        <a href="cart.html">
+                        <a href="cart.php">
                             <span uk-icon="icon: cart"></span>
                             <p>Winkelwagen</p>
                             <span class="uk-badge">1</span>
