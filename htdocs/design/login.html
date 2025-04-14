@@ -137,37 +137,34 @@
                                 <canvas width="600" height="400"></canvas>
                             </div>
                             <div>
+                                <div class="uk-card-header uk-text-center">
+                                    <h2>
+                                        Inloggen
+                                    </h2>
+                                </div>
                                 <div class="uk-card-body">
-                                    <div class="uk-flex">
-                                        <div class="uk-flex-row">
-                                            <h2 class="uk-card-title">Stoel</h2>
-                                            <p>De beste stoel voor een beginende stoelensleeper.</p>
-                                        </div>
-                                        <div class="uk-flex-row">
-                                            <div class="uk-flex-column"></div>
-                                            <div class="uk-flex-column"></div>
-                                            <div class="uk-flex-column">
-                                                <h4 class="price-text">&euro; 10,00</h4>
+                                    <form>
+                                        <div class="uk-flex uk-flex-column uk-width-1-4">
+                                            <div class="uk-flex-row">
+                                                <label for="user-name">Username</label><br>
+                                                <input type="text" id="user-name" name="user-name">
+                                            </div>
+                                            <div class="uk-flex-row">
+                                                <label for="mail">e-mail</label><br>
+                                                <input type="email" id="mail">
+                                            </div>
+                                            <div class="uk-flex-row">
+                                                <label for="password">Password</label><br>
+                                                <input type="password" id="password">
+                                            </div>
+                                            <div class="uk-width-1-1 uk-margin-top">
+                                                <hr>
+                                            </div>
+                                            <div class="uk-flex-row uk-margin-top">
+                                                <input class="uk-button uk-button-default" type="submit" name="login" value="login">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="uk-column-1-2 uk-margin-xlarge-top">
-                                    <p></p>
-                                    <div class="uk-container uk-margin-medium-right">
-                                        <div class="uk-flex uk-flex-right">
-                                            <form class="uk-margin-large">
-                                                <div uk-form-custom="target: true">
-                                                    <input type="number"
-                                                        class="uk-form-width-xsmall uk-margin-xsmall-right" value="1"
-                                                        min="1" max="50" required>
-                                                    <button type="submit"
-                                                        class="uk-label uk-button uk-button-primary"><span
-                                                            uk-icon="icon: cart"></span> in Winkelwagen</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
