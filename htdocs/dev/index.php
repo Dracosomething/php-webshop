@@ -1,4 +1,11 @@
 <?php
+include("./src/database/Database.class.php");
+
+$sql = "SELECT * FROM products";
+
+$conn = new Database();
+
+
 include_once("template/head.inc.php");
 ?>
     <main>
