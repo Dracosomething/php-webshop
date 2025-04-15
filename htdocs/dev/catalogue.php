@@ -4,10 +4,10 @@ include_once("template/head.inc.php");
 <main class="uk-container uk-margin uk-margin-xlarge-bottom uk-padding-large">
     <div uk-grid>
         <div class="uk-width-auto">
-            <div class="uk-form-label">Radio</div>
+            <div class="uk-form-label">Categorieën</div>
             <div class="uk-form-controls">
-                <label><input class="uk-radio" type="radio" name="radio1"> Option 01</label><br>
-                <label><input class="uk-radio" type="radio" name="radio1"> Option 02</label>
+                <label><input class="uk-checkbox" type="checkbox" name="checkbox1"> Option 01</label><br>
+                <label><input class="uk-checkbox" type="checkbox" name="checkbox2"> Option 02</label>
             </div>
         </div>
         <div class="uk-width-1-6">

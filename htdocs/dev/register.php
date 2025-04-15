@@ -27,56 +27,56 @@ include_once("template/head.inc.php");
                                                 id="first-name">
                                         </div>
 
-                                        <div class="uk-width-1-4">
+                                        <div class="uk-width-1-4 uk-margin-top">
                                             <label for="infix">Tussenvoegsels </label><br>
                                             <input class="uk-input" type="text" placeholder="tussenvoegsel..."
                                                 id="infix">
                                         </div>
 
-                                        <div class="uk-width-1-2 uk-margin-left">
+                                        <div class="uk-width-1-2 uk-margin-left uk-margin-top">
                                             <label for="last-name">Achternaam</label><br>
                                             <input class="uk-input" type="text" placeholder="achternaam..."
                                                 id="last-name">
                                         </div>
 
-                                        <div class="uk-width-1-2">
+                                        <div class="uk-width-1-2 uk-margin-top">
                                             <label for="street-name">Straatnaam</label><br>
                                             <input class="uk-input" type="text" placeholder="straatnaam..."
                                                 id="street-name">
                                         </div>
-                                        <div class="uk-width-1-5 uk-margin-left">
+                                        <div class="uk-width-1-5 uk-margin-left uk-margin-top">
                                             <label for="adress">Huisnummer</label><br>
                                             <input class="uk-input" type="number" placeholder="huisnummer..."
                                                 id="adress">
                                         </div>
-                                        <div class="uk-width-1-5 uk-margin-left">
+                                        <div class="uk-width-1-5 uk-margin-left uk-margin-top">
                                             <label for="additions">Toevoegingen</label><br>
                                             <input class="uk-input" type="text" placeholder="toevoegingen..."
                                                 id="additions">
                                         </div>
 
-                                        <div class="uk-width-1-3">
+                                        <div class="uk-width-1-3 uk-margin-top">
                                             <label for="code">Postcode</label><br>
                                             <input class="uk-input" type="text" placeholder="postcode..." id="code">
                                         </div>
-                                        <div class="uk-width-1-2 uk-margin-left">
+                                        <div class="uk-width-1-2 uk-margin-left uk-margin-top">
                                             <label for="town">Plaats</label><br>
                                             <input class="uk-input" type="text" placeholder="plaats..." id="town">
                                         </div>
 
-                                        <div class="uk-width-1-1">
+                                        <div class="uk-width-1-1 uk-margin-top">
                                             <label for="mail">Email</label><br>
                                             <input class="uk-input" type="email" name="mail" id="mail"
                                                 placeholder="E-mail adress...">
                                         </div>
 
-                                        <div class="uk-width-1-1">
+                                        <div class="uk-width-1-1 uk-margin-top">
                                             <label for="password">Wachtwoord</label><br>
                                             <input class="uk-input" type="password" name="password"
                                                 placeholder="wachtwoord...">
                                         </div>
 
-                                        <div class="uk-width-1-1">
+                                        <div class="uk-width-1-1 uk-margin-top">
                                             <label for="password-contr">Wachtwoord Controle</label><br>
                                             <input class="uk-input" type="password" name="password-contr"
                                                 id="password-contr" placeholder="Voer het wachtwoord nogmaals in...">
@@ -91,7 +91,7 @@ include_once("template/head.inc.php");
                                                         name="register" value="Registreren">
                                                 </div>
                                                 <div class="uk-float-left uk-margin-large-right">
-                                                    <a class="uk-link-text uk-text-primary" href="login.html">
+                                                    <a class="uk-link-text uk-text-primary" href="login.php">
                                                         Inloggen
                                                     </a>
                                                 </div>

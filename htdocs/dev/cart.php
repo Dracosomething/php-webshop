@@ -20,7 +20,7 @@ include_once("template/head.inc.php");
                     </div>
                     <div class="uk-width-1-6 uk-margin-large-top">
                         <form>
-                            <input class="uk-input uk-width-1-3" type="number">
+                            <input class="uk-input uk-width-1-3" type="number" value=1>
                             <div class="uk-inline">
                                 <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
                                 <input class="uk-input uk-form-blank uk-form-danger" type="button"
