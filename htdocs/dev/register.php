@@ -40,7 +40,7 @@ include_once("template/head.inc.php");
                                         </div>
 
                                         <div class="uk-width-1-2">
-                                            <label for="street-name">Staatnaam</label><br>
+                                            <label for="street-name">Straatnaam</label><br>
                                             <input class="uk-input" type="text" placeholder="straatnaam..."
                                                 id="street-name">
                                         </div>
