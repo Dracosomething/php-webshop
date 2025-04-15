@@ -28,70 +28,18 @@ include_once("template/head.inc.php");
                                             tempor
                                             incididunt.</p>
                                     </div>
+                                    <div class="uk-card-footer">
+                                    <div class="uk-flex uk-flex-row">
+                                        <div class="uk-flex-column uk-width-1-1"></div>
+                                        <div class="uk-flex-column uk-width-1-3">
+                                            <h4 class="price-text">&euro; 10,00</h4>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </a>
                             </div>
                         </div>
                         <!-- einde card 1 -->
-                        <div class="uk-link-reset">
-                            <div class="uk-card uk-card-default">
-                                <a href="product.php">
-                                    <div class="uk-card-media-top">
-                                        <img src="images/dark.jpg" width="1800" height="1200" alt="">
-                                    </div>
-                                    <div class="uk-card-body">
-                                        <h3 class="uk-card-title">Headline</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="uk-link-reset">
-                            <div class="uk-card uk-card-default">
-                                <a href="product.php">
-                                    <div class="uk-card-media-top">
-                                        <img src="images/light.jpg" width="1800" height="1200" alt="">
-                                    </div>
-                                    <div class="uk-card-body">
-                                        <h3 class="uk-card-title">Headline</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="uk-link-reset">
-                            <div class="uk-card uk-card-default">
-                                <a href="product.php">
-                                    <div class="uk-card-media-top">
-                                        <img src="images/photo2.jpg" width="1800" height="1200" alt="">
-                                    </div>
-                                    <div class="uk-card-body">
-                                        <h3 class="uk-card-title">Headline</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="uk-link-reset">
-                            <div class="uk-card uk-card-default">
-                                <a href="product.php">
-                                    <div class="uk-card-media-top">
-                                        <img src="images/photo3.jpg" width="1800" height="1200" alt="">
-                                    </div>
-                                    <div class="uk-card-body">
-                                        <h3 class="uk-card-title">Headline</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
                     </div>
 
                     <a class="uk-position-center-left uk-position-small uk-hidden-hover" href uk-slidenav-previous
