@@ -28,23 +28,24 @@ include_once("template/head.inc.php");
 
             <div class="uk-position-relative uk-visible-toggle uk-dark" tabindex="-1">
                 <div class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid">
-                    <?php foreach ($recset as $product): ?>
+                    <?php for ($i = 0; $i < 5; $i++):
+                        $product = $recset[$i]; ?>
                         <!-- begin card 1 -->
                         <div class="uk-link-reset">
-                            <div class="uk-card uk-card-default">
-                                <a href="product.php?product_id=<?= $product['id'] ?>">
+                            <div class="uk-card uk-card-default uk-height-1-1">
+                                <a href="product.php?product_id=<?= $product['ID'] ?>">
                                     <div class="uk-card-media-top">
-                                        <img src=<?= $product['image'] ?> width="1800" height="1200" alt="">
+                                        <img src=<?= $product['image'] ?> height="300" width="200" alt="">
                                     </div>
                                     <div class="uk-card-body">
                                         <h3 class="uk-card-title"><?= $product['name'] ?></h3>
                                         <p><?= $product['description'] ?></p>
                                     </div>
-                                    <div class="uk-card-footer">
+                                    <div class="">
                                         <div class="uk-flex uk-flex-row">
                                             <div class="uk-flex-column uk-width-1-1"></div>
                                             <div class="uk-flex-column uk-width-1-3">
-                                                <h4 class="price-text">&euro;<?= $product['price'] ?></h4>
+                                                <h4 class="price-text uk-position-bottom-right uk-margin-right uk-margin-top">&euro;<?= $product['price'] ?></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +53,7 @@ include_once("template/head.inc.php");
                             </div>
                         </div>
                         <!-- einde card 1 -->
-                    <?php endforeach; ?>
+                    <?php endfor; ?>
                 </div>
 
                 <a class="uk-position-center-left uk-position-small uk-hidden-hover" href uk-slidenav-previous
