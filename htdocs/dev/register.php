@@ -91,7 +91,7 @@ include_once("template/head.inc.php");
                                                         name="register" value="Registreren">
                                                 </div>
                                                 <div class="uk-float-left uk-margin-large-right">
-                                                    <a class="uk-link-text uk-text-primary" href="login.html">
+                                                    <a class="uk-link-text uk-text-primary" href="login.php">
                                                         Inloggen
                                                     </a>
                                                 </div>

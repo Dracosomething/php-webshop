@@ -76,7 +76,6 @@ include_once("template/head.inc.php");
             </div>
         </div>
     </div>
-    </>
 </main>
 
 <?php

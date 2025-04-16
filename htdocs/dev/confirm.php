@@ -26,7 +26,7 @@ include_once("template/head.inc.php");
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
                         <h3>
-                            Overzicht
+                            Facture
                         </h3>
                     </div>
                     <div class="uk-card-body">
