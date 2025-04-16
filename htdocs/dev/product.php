@@ -18,7 +18,7 @@ include_once("template/head.inc.php");
                                 <div class="uk-flex">
                                     <div class="uk-flex-row">
                                         <h2 class="uk-card-title">Stoel</h2>
-                                        <p>De beste stoel voor een beginende stoelensleeper.</p>
+                                        <p>De beste stoel voor een beginnende stoelensleeper.</p>
                                     </div>
                                     <div class="uk-flex-row">
                                         <div class="uk-flex-column"></div>
