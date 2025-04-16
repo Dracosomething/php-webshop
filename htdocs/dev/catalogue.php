@@ -30,7 +30,7 @@ include_once("template/head.inc.php");
                             </div>
                             <div class="uk-card-footer">
                                 <div class="uk-flex uk-flex-row">
-                                    <div class="uk-flex-column uk-width-1-1"></div>
+                                    <div class="uk-flex-column uk-width-1-2"></div>
                                     <div class="uk-flex-column uk-width-1-1">
                                         <h4 class="price-text">&euro; 10,00</h4>
                                     </div>

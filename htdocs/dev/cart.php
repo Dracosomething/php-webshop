@@ -67,9 +67,9 @@ include_once("template/head.inc.php");
                                 <p>&euro;20,-</p>
                             </div>
                         </div>
-                        <div class="uk-align-center">
-                            <button class="uk-button uk-button-primary uk-margin-medium-top uk-align-center">verder naar
-                                Bestelling</button>
+                        <div class="uk-text-center">
+                            <a href="confirm.php" class="uk-button uk-button-primary uk-margin-medium-top">verder naar
+                                Bestelling</a>
                         </div>
                     </div>
                 </div>
