@@ -19,7 +19,7 @@
 
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="index.html">
+                        <a href="#">
                             <span uk-icon="icon: apple"></span>
                             <p>Stoelen sleepers</p>
                         </a>
@@ -31,28 +31,27 @@
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="catalogue.html">
+                        <a href="#">
                             <span uk-icon="icon: list"></span>
                             <p>Catalogus</p>
                         </a>
                     </li>
                     <li>
-                        <a href="login.html">
+                        <a href="#">
                             <span uk-icon="icon: sign-in"></span>
                             <p>Inloggen</p>
                         </a>
                     </li>
                     <li>
-                        <a href="register.html">
+                        <a href="#">
                             <span uk-icon="icon: file-edit"></span>
                             <p>Registreren</p>
                         </a>
                     </li>
                     <li>
-                        <a href="cart.html">
+                        <a href="#">
                             <span uk-icon="icon: cart"></span>
                             <p>Winkelwagen</p>
-                            <span class="uk-badge">1</span>
                         </a>
                     </li>
                     <li>
@@ -123,76 +122,3 @@
             </div>
         </div>
     </nav>
-
-    <main>
-        <div class="uk-container">
-            <div class="uk-flex uk-flex-center uk-flex-wrap uk-flex-wrap-around">
-                <div class="uk-flex-column"></div>
-                <div class="uk-flex-column">
-                    <div class="uk-flex-row@xl uk-margin-xlarge-bottom"></div>
-                    <div class="uk-flex-row@xl">
-                        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-                            <div class="uk-card-media-left uk-cover-container">
-                                <img src="images/light.jpg" alt="" uk-cover>
-                                <canvas width="600" height="400"></canvas>
-                            </div>
-                            <div>
-                                <div class="uk-card-body">
-                                    <div class="uk-flex">
-                                        <div class="uk-flex-row">
-                                            <h2 class="uk-card-title">Stoel</h2>
-                                            <p>De beste stoel voor een beginende stoelensleeper.</p>
-                                        </div>
-                                        <div class="uk-flex-row">
-                                            <div class="uk-flex-column"></div>
-                                            <div class="uk-flex-column"></div>
-                                            <div class="uk-flex-column">
-                                                <h4 class="price-text">&euro; 10,00</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="uk-column-1-2 uk-margin-xlarge-top">
-                                    <p></p>
-                                    <div class="uk-container uk-margin-medium-right">
-                                        <div class="uk-flex uk-flex-right">
-                                            <form class="uk-margin-large">
-                                                <div uk-form-custom="target: true">
-                                                    <input type="number"
-                                                        class="uk-form-width-xsmall uk-margin-xsmall-right" value="1"
-                                                        min="1" max="50" required>
-                                                    <button type="submit"
-                                                        class="uk-label uk-button uk-button-primary"><span
-                                                            uk-icon="icon: cart"></span> in Winkelwagen</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-flex-row@xl uk-margin-xlarge-top"></div>
-                </div>
-                <div class="uk-flex-column"></div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div uk-sticky="position: bottom">
-            <div class="uk-overlay-primary">
-                <div class="uk-container">
-                    <br>
-                    <p>telefoon: 12345677890</p>
-                    <p>mail: stoelensleepers_bussiness@sleepers-mail.com</p>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
-</body>
-
-</html>
