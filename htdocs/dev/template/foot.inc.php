@@ -4,7 +4,7 @@
                 <div class="uk-container">
                     <br>
                     <p>telefoon: 12345677890</p>
-                    <p>mail: stoelensleepers_bussiness@sleepers-mail.com</p>
+                    <p>mail: stoelensleepers_business@sleepers-mail.com</p>
                     <br>
                 </div>
             </div>
