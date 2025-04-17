@@ -7,6 +7,18 @@ function each(obj, cb) {
     return true;
 }
 
+function toNumber(value) {
+    const number = Number(value);
+    return isNaN(number) ? false : number;
+  }
+
+function isBetween(obj, min, max) {
+    const value = toNumber(obj);
+    const minVal = toNumber(min);
+    const maxVal = toNumber(max);
+    return value >= minVal && minVal <= value && maxVal >= value && value <= maxVal;
+}
+
 function isObject(obj) {
     return obj !== null && typeof obj === "object";
 }
@@ -55,5 +67,18 @@ function addRedTextToEmptyInputFields(formName, checkForRegisterpage = false) {
                 error.style.display = "none"
             }
         }
+    }
+}
+
+function enableToCartIfProductAmountGood() {
+    var input = document.forms["cart"]["amount"];
+    var buttonToCart = document.forms["cart"]["toCart"];
+    var amount = input.value;
+    var min = input.min;
+    var max = input.max;
+    if (isBetween(amount, min, max)) {
+        buttonToCart.removeAttribute("disabled");
+    } else {
+        buttonToCart.setAttribute("disabled", "");
     }
 }
