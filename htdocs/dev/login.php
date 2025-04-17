@@ -21,15 +21,15 @@ include_once("template/head.inc.php");
                                 </h2>
                             </div>
                             <div class="uk-card-body">
-                                <form>
+                                <form name="login">
                                     <div class="uk-flex uk-flex-column uk-width-1-4">
                                         <div class="uk-flex-row">
                                             <label for="mail">e-mail</label><br>
-                                            <input type="email" id="mail">
+                                            <input type="email" id="mail" required>
                                         </div>
                                         <div class="uk-flex-row">
                                             <label for="password">Password</label><br>
-                                            <input type="password" id="password">
+                                            <input type="password" id="password" required>
                                         </div>
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <hr>
@@ -37,7 +37,7 @@ include_once("template/head.inc.php");
                                         <div class="uk-flex-row uk-margin-top">
                                             <div class="uk-clearfix">
                                                 <div class="uk-float-right uk-margin-large-left">
-                                                    <input class="uk-button uk-button-default" type="submit"
+                                                    <input onclick="addRedTextToEmptyInputFields('login')" class="uk-button uk-button-default" type="submit"
                                                         name="login" value="login">
                                                 </div>
                                                 <div class="uk-float-left uk-margin-large-right">
