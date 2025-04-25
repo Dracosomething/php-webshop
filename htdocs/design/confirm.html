@@ -19,7 +19,7 @@
 
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="index.html">
+                        <a href="index.php">
                             <span uk-icon="icon: apple"></span>
                             <p>Stoelen sleepers</p>
                         </a>
@@ -31,25 +31,25 @@
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
                     <li>
-                        <a href="catalogue.html">
+                        <a href="catalogue.php">
                             <span uk-icon="icon: list"></span>
                             <p>Catalogus</p>
                         </a>
                     </li>
                     <li>
-                        <a href="login.html">
+                        <a href="login.php">
                             <span uk-icon="icon: sign-in"></span>
                             <p>Inloggen</p>
                         </a>
                     </li>
                     <li>
-                        <a href="register.html">
+                        <a href="register.php">
                             <span uk-icon="icon: file-edit"></span>
                             <p>Registreren</p>
                         </a>
                     </li>
                     <li>
-                        <a href="cart.html">
+                        <a href="cart.php">
                             <span uk-icon="icon: cart"></span>
                             <p>Winkelwagen</p>
                             <span class="uk-badge">1</span>
@@ -124,81 +124,64 @@
         </div>
     </nav>
 
-    <main>
-        <div class="uk-margin-right uk-margin-bottom uk-margin-left uk-margin-top">
-            <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
-                <div class="uk-flex-column uk-width-1-2 uk-margin-right">
-                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-                        <div class="uk-card-media-left uk-cover-container">
-                            <img src="images/light.jpg" alt="" uk-cover>
-                            <canvas width="600" height="400"></canvas>
-                        </div>
-                        <div>
-                            <div class="uk-card-body">
-                                <h3 class="uk-card-title">Media Left</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt.</p>
+    <main class="uk-container">
+        <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
+            <div class="uk-width-1-1 uk-margin-top">
+                <div class="uk-card uk-card-default">
+                    <h3 class="uk-card-title uk-text-center">Bedankt voor uw besteling</h3>
+                    <div class="uk-card-body">
+                        <div class="uk-clearfix">
+                            <div class="uk-float-left">
+                                <p>U krijgt uw besteling binnenkort binnen.</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-                        <div class="uk-card-media-left uk-cover-container">
-                            <img src="images/light.jpg" alt="" uk-cover>
-                            <canvas width="600" height="400"></canvas>
-                        </div>
-                        <div>
-                            <div class="uk-card-body">
-                                <h3 class="uk-card-title">Media Left</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-flex-column uk-width-1-4 uk-align-right">
-                    <div class="uk-card uk-card-default">
-                        <div class="uk-card-header">
-                            <h3>
-                                Overzicht
-                            </h3>
-                        </div>
-                        <div class="uk-card-body">
-                            <div class="">
-                                <div class="uk-width-1-1">
-                                    <div class="uk-align-left">
-                                        <p>Artikelen (2)</p>
-                                    </div>
-                                    <div class="uk-align-right">
-                                        <p>&euro;20,-</p>
-                                    </div>
+                            <div class="uk-float-right">
+                                <div class="uk-card uk-card-default uk-card-body">
+                                    besteling nummer:<br>
+                                    1234567
                                 </div>
-                                <div class="uk-width-1-1">
-                                    <div class="uk-align-left">
-                                        <p>Verzendkosten</p>
-                                    </div>
-                                    <div class="uk-align-right">
-                                        <p>&euro;0,-</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="uk-card-footer">
-                            <div class="uk-width-1-1">
-                                <div class="uk-align-left uk-text-bolder">
-                                    <p>Te betalen</p>
-                                </div>
-                                <div class="uk-align-right uk-text-bolder">
-                                    <p>&euro;20,-</p>
-                                </div>
-                            </div>
-                            <div class="uk-align-center">
-                                <a class="uk-button uk-button-primary uk-margin-medium-top uk-align-center" href="confirm.html">verder naar Bestelling</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-header">
+                        <h3>
+                            Overzicht
+                        </h3>
+                    </div>
+                    <div class="uk-card-body">
+                        <div class="">
+                            <div class="uk-width-1-1">
+                                <div class="uk-align-left">
+                                    <p class="uk-text-bolder">Artikelen:</p>
+                                    <p>Stoel Deluxe (1)</p>
+                                    <p>Gerard (1 uur)</p><br>
+                                    <p class="uk-text-bolder">Verzendkosten</p>
+                                </div>
+                                <div class="uk-align-right">
+                                    <br>
+                                    <p>&euro;20,-</p>
+                                    <p>&euro;20,-</p>
+                                    <br>
+                                    <p class="uk-text-bolder">&euro;0,-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-footer">
+                        <div class="uk-width-1-1">
+                            <div class="uk-align-left uk-text-bolder">
+                                <p>Te betalen</p>
+                            </div>
+                            <div class="uk-align-right uk-text-bolder">
+                                <p>&euro;40,-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 

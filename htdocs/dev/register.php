@@ -15,16 +15,16 @@ include_once("template/head.inc.php");
                                 </h2>
                             </div>
                             <div class="uk-card-body">
-                                <div class="uk-alert-danger" uk-alert>
+                                <div id="error-card" class="uk-alert-danger" uk-alert style="display: none;">
                                     <p>something went wrong</p>
                                     <button class="uk-alert-close" type="button" uk-close></button>
                                 </div>
-                                <form>
+                                <form name="register">
                                     <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-margin">
                                         <div class="uk-width-1-1">
                                             <label for="first-name">voornaam</label><br>
                                             <input class="uk-input" type="text" placeholder="voornaam..."
-                                                id="first-name">
+                                                id="first-name" required>
                                         </div>
 
                                         <div class="uk-width-1-4 uk-margin-top">
@@ -36,18 +36,18 @@ include_once("template/head.inc.php");
                                         <div class="uk-width-1-2 uk-margin-left uk-margin-top">
                                             <label for="last-name">Achternaam</label><br>
                                             <input class="uk-input" type="text" placeholder="achternaam..."
-                                                id="last-name">
+                                                id="last-name" required>
                                         </div>
 
                                         <div class="uk-width-1-2 uk-margin-top">
                                             <label for="street-name">Straatnaam</label><br>
                                             <input class="uk-input" type="text" placeholder="straatnaam..."
-                                                id="street-name">
+                                                id="street-name" required>
                                         </div>
                                         <div class="uk-width-1-5 uk-margin-left uk-margin-top">
                                             <label for="adress">Huisnummer</label><br>
                                             <input class="uk-input" type="number" placeholder="huisnummer..."
-                                                id="adress">
+                                                id="adress" required>
                                         </div>
                                         <div class="uk-width-1-5 uk-margin-left uk-margin-top">
                                             <label for="additions">Toevoegingen</label><br>
@@ -57,29 +57,29 @@ include_once("template/head.inc.php");
 
                                         <div class="uk-width-1-3 uk-margin-top">
                                             <label for="code">Postcode</label><br>
-                                            <input class="uk-input" type="text" placeholder="postcode..." id="code">
+                                            <input class="uk-input" type="text" placeholder="postcode..." id="code" required>
                                         </div>
                                         <div class="uk-width-1-2 uk-margin-left uk-margin-top">
                                             <label for="town">Plaats</label><br>
-                                            <input class="uk-input" type="text" placeholder="plaats..." id="town">
+                                            <input class="uk-input" type="text" placeholder="plaats..." id="town" required>
                                         </div>
 
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <label for="mail">Email</label><br>
                                             <input class="uk-input" type="email" name="mail" id="mail"
-                                                placeholder="E-mail adress...">
+                                                placeholder="E-mail adress..." required>
                                         </div>
 
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <label for="password">Wachtwoord</label><br>
-                                            <input class="uk-input" type="password" name="password"
-                                                placeholder="wachtwoord...">
+                                            <input oninput="passwordCheck()" class="uk-input" type="password" name="password"
+                                                placeholder="wachtwoord..." required>
                                         </div>
 
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <label for="password-contr">Wachtwoord Controle</label><br>
-                                            <input class="uk-input" type="password" name="password-contr"
-                                                id="password-contr" placeholder="Voer het wachtwoord nogmaals in...">
+                                            <input oninput="passwordCheck()" class="uk-input" type="password" name="password-contr"
+                                                id="password-contr" placeholder="Voer het wachtwoord nogmaals in..." required>
                                         </div>
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <hr>
@@ -88,7 +88,7 @@ include_once("template/head.inc.php");
                                             <div class="uk-clearfix">
                                                 <div class="uk-float-right uk-margin-large-left">
                                                     <input class="uk-button uk-button-default" type="submit"
-                                                        name="register" value="Registreren">
+                                                        name="register" value="Registreren" onclick="addRedTextToEmptyInputFields('register', true)">
                                                 </div>
                                                 <div class="uk-float-left uk-margin-large-right">
                                                     <a class="uk-link-text uk-text-primary" href="login.php">

@@ -33,11 +33,11 @@ include_once("template/head.inc.php");
                                 <p></p>
                                 <div class="uk-container uk-margin-medium-right">
                                     <div class="uk-flex uk-flex-right">
-                                        <form class="uk-margin-large">
+                                        <form class="uk-margin-large" name="cart">
                                             <div uk-form-custom="target: true">
-                                                <input type="number" class="uk-form-width-xsmall uk-margin-xsmall-right"
-                                                    value="1" min="1" max="50" required>
-                                                <button type="submit" class="uk-label uk-button uk-button-primary"><span
+                                                <input name="amount" type="number" class="uk-form-width-xsmall uk-margin-xsmall-right"
+                                                    value="1" min="1" max="50" required oninput="enableToCartIfProductAmountGood()">
+                                                <button name="toCart" type="submit" class="uk-label uk-button uk-button-primary"><span
                                                         uk-icon="icon: cart"></span> in Winkelwagen</button>
                                             </div>
                                         </form>
