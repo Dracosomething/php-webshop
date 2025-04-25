@@ -6,7 +6,7 @@ $PriceHelper = new PriceHelper();
 try {
     $dbconn = new Database();
 
-    $productId = $_GET["product_id"];
+    $productId = $_GET["product_id"] = 1;
     $sql = "SELECT * FROM products WHERE ID = $productId";
     $recset = $dbconn->select($sql)[0];
 } catch (PDOException $e) {
@@ -38,7 +38,8 @@ include_once("template/head.inc.php");
                                         <div class="uk-flex-column"></div>
                                         <div class="uk-flex-column"></div>
                                         <div class="uk-flex-column">
-                                            <h4 class="price-text">&euro;<?= $PriceHelper->parseFloatToPrice($recset["price"]) ?></h4>
+                                            <h4 class="price-text">
+                                                &euro;<?= $PriceHelper->parseFloatToPrice($recset["price"]) ?></h4>
                                         </div>
                                     </div>
                                 </div>

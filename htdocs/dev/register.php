@@ -1,4 +1,13 @@
 <?php
+include_once("./src/database/Database.class.php");
+
+try {
+    $dbconn = new Database();
+    // set the PDO error mode to exception
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
 include_once("template/head.inc.php");
 ?>
 <main>
@@ -19,7 +28,7 @@ include_once("template/head.inc.php");
                                     <p>something went wrong</p>
                                     <button class="uk-alert-close" type="button" uk-close></button>
                                 </div>
-                                <form name="register">
+                                <form name="register" method="post">
                                     <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-margin">
                                         <div class="uk-width-1-1">
                                             <label for="first-name">voornaam</label><br>
