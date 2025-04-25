@@ -7,7 +7,7 @@ try {
     $dbconn = new Database();
 
     $productId = $_GET["product_id"];
-    $sql = "SELECT * FROM products WHERE ID = $productId";
+    $sql = "SELECT * FROM products WHERE ID = $productId = 1";
     $recset = $dbconn->select($sql)[0];
 } catch (PDOException $e) {
     echo ("connection failed: " . $e->getMessage());
@@ -23,10 +23,9 @@ include_once("template/head.inc.php");
                 <div class="uk-flex-row@xl uk-margin-xlarge-bottom"></div>
                 <div class="uk-flex-row@xl">
                     <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-                        <div class="uk-card-media-left uk-cover-container">
-                            <img src="<?= $recset["image"] ?>" alt="" height="400" width="400">
-                            <!-- <canvas height="00" width="500"></canvas> -->
-                        </div>
+                        <section class="uk-width-1-2 uk-card-media-left">
+                            <img src="<?= $recset["image"] ?>" class="" alt="" title="" />
+                        </section>
                         <div>
                             <div class="uk-card-body">
                                 <div class="uk-flex">
@@ -38,7 +37,8 @@ include_once("template/head.inc.php");
                                         <div class="uk-flex-column"></div>
                                         <div class="uk-flex-column"></div>
                                         <div class="uk-flex-column">
-                                            <h4 class="price-text">&euro;<?= $PriceHelper->parseFloatToPrice($recset["price"]) ?></h4>
+                                            <h4 class="price-text">
+                                                &euro;<?= $PriceHelper->parseFloatToPrice($recset["price"]) ?></h4>
                                         </div>
                                     </div>
                                 </div>
