@@ -8,7 +8,9 @@ class PriceHelper
             $stringFloat .= ",-";
         }
         $stringFloat = str_replace(".", ",", $stringFloat);
-        if (!str_ends_with($stringFloat, "0") && !str_ends_with($stringFloat, "-")) {
+        $decimals = preg_split("/,/", $stringFloat);
+        $decimals = (string) $decimals[1];
+        if (!str_ends_with($decimals, "0") && !str_ends_with($decimals, "-") && strlen($decimals) < 2) {
             $stringFloat .= "0";
         }
         return $stringFloat;

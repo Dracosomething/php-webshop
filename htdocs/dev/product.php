@@ -9,9 +9,6 @@ try {
     $productId = $_GET["product_id"];
     $sql = "SELECT * FROM products WHERE ID = $productId";
     $recset = $dbconn->select($sql)[0];
-    echo ("<pre>");
-    print_r($recset);
-    echo ("</pre>");
 } catch (PDOException $e) {
     echo ("connection failed: " . $e->getMessage());
 }
