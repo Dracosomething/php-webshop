@@ -1,13 +1,13 @@
 <?php
 include("./src/database/Database.class.php");
+include_once("./src/helpers/price.helper.php");
+$PriceHelper = new PriceHelper();
 
 try {
     $dbconn = new Database();
     // set the PDO error mode to exception
     $sql = "SELECT * FROM products";
-    $query = $dbconn->prepare($sql);
-    $query->execute();
-    $recset = $query->fetchAll(PDO::FETCH_ASSOC);
+    $recset = $dbconn->select($sql);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
@@ -45,7 +45,9 @@ include_once("template/head.inc.php");
                                         <div class="uk-flex uk-flex-row">
                                             <div class="uk-flex-column uk-width-1-1"></div>
                                             <div class="uk-flex-column uk-width-1-3">
-                                                <h4 class="price-text uk-position-bottom-right uk-margin-right uk-margin-top">&euro;<?= $product['price'] ?></h4>
+                                                <h4
+                                                    class="price-text uk-position-bottom-right uk-margin-right uk-margin-top">
+                                                    &euro;<?= $PriceHelper->parseFloatToPrice($product['price']) ?></h4>
                                             </div>
                                         </div>
                                     </div>
