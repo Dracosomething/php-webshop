@@ -12,4 +12,10 @@ class Database extends PDO
         parent::__construct("mysql:host=" . $this::$host . "; dbname=" . $this::$dbname . "; charset=utf8", $this::$user, $this::$pass);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+
+    public function select($sql) {
+        $query = $this->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
