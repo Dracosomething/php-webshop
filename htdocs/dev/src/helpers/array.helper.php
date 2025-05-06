@@ -20,6 +20,8 @@ class ArrayHelper {
     }
 
     public function stringToArray(string $string): array {
+        $string = str_replace("[", "", $string);
+        $string = str_replace("]", "", $string);
         return preg_split("/, /", $string);
     }
 }

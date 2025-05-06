@@ -2,8 +2,6 @@
 @include_once(__DIR__."/../helpers/array.helper.php");
 @include_once(__DIR__."/../database/Database.class.php");
 
-echo "rewer";
-
 $message = "";
 
 try {
