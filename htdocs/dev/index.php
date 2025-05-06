@@ -1,5 +1,5 @@
 <?php
-include("./src/database/Database.class.php");
+include_once("./src/database/Database.class.php");
 
 try {
     $dbconn = new Database();
