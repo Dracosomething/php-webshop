@@ -1,29 +1,4 @@
 <?php
-include_once("./src/database/Database.class.php");
-
-$message = "";
-
-try {
-    $dbconn = new Database();
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $firstName = $_POST["first_name"];
-        $infix = $_POST["infix"];
-        $lastName = $_POST["last_name"];
-        $streetName = $_POST["street_name"];
-        $adress = $_POST["house_number"];
-        $zipCode = $_POST["zipcode"];
-        $additions = $_POST["street_name_addon"];
-        $town = $_POST["city"];
-        $mail = $_POST["email"];
-        $password = $_POST["password"];
-
-        $sql = "INSERT INTO ";
-    }
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
 include_once("template/head.inc.php");
 ?>
 <main>
@@ -44,7 +19,7 @@ include_once("template/head.inc.php");
                                     <p>something went wrong</p>
                                     <button class="uk-alert-close" type="button" uk-close></button>
                                 </div>
-                                <form name="register" method="post">
+                                <form name="register" method="post" action="src/formHandlers/register.handler.php">
                                     <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-margin">
                                         <div class="uk-width-1-1">
                                             <label for="first-name">voornaam</label><br>

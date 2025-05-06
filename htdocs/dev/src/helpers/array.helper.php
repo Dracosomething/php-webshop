@@ -10,4 +10,16 @@ class ArrayHelper {
         }
         return $returnVal;
     }
+
+    public function anyNotSetOrEmpty(array $array): bool {
+        $returnVal = false;
+        foreach ($array as $value) {
+            $returnVal = !isset($value) || empty($value);
+        }
+        return $returnVal;
+    }
+
+    public function stringToArray(string $string): array {
+        return preg_split("/, /", $string);
+    }
 }
