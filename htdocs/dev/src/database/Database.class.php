@@ -13,9 +13,9 @@ class Database extends PDO
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function select($sql) {
+    public function select(string $sql, array $params = []): array {
         $query = $this->prepare($sql);
-        $query->execute();
+        $query->execute($params);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }

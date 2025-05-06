@@ -7,8 +7,19 @@ try {
     $dbconn = new Database();
 
     $productId = $_GET["product_id"];
-    $sql = "SELECT * FROM products WHERE ID = $productId = 1";
-    $recset = $dbconn->select($sql)[0];
+    
+    if ($productId == null) {
+        $productId = 1;
+    }
+    
+    $sql = "SELECT * FROM products WHERE ID = :id";
+    $recset = $dbconn->select($sql, [':id' => $productId]);
+    
+    if (empty($recset)) {
+        $recset = $dbconn->select($sql, [':id' => 1])[0];
+    } else {
+        $recset = $recset[0];
+    }
 } catch (PDOException $e) {
     echo ("connection failed: " . $e->getMessage());
 }
