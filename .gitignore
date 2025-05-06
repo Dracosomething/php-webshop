@@ -1,2 +1,3 @@
 pass.php
 ./htdocs/dblessons/*
+./htdocs/dev/src/database/Database.class.php
