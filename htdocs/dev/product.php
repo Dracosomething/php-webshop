@@ -7,16 +7,16 @@ try {
     $dbconn = new Database();
 
     $productId = $_GET["product_id"];
-    
+
     if ($productId == null) {
         $productId = 1;
     }
-    
+
     $sql = "SELECT * FROM products WHERE ID = :id";
-    $recset = $dbconn->select($sql, [':id' => $productId]);
-    
+    $recset = $dbconn->querySql($sql, [':id' => $productId]);
+
     if (empty($recset)) {
-        $recset = $dbconn->select($sql, [':id' => 1])[0];
+        $recset = $dbconn->querySql($sql, [':id' => 1])[0];
     } else {
         $recset = $recset[0];
     }

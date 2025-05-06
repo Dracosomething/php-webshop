@@ -1,9 +1,25 @@
 <?php
 include_once("./src/database/Database.class.php");
 
+$message = "";
+
 try {
     $dbconn = new Database();
-    // set the PDO error mode to exception
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $firstName = $_POST["first_name"];
+        $infix = $_POST["infix"];
+        $lastName = $_POST["last_name"];
+        $streetName = $_POST["street_name"];
+        $adress = $_POST["house_number"];
+        $zipCode = $_POST["zipcode"];
+        $additions = $_POST["street_name_addon"];
+        $town = $_POST["city"];
+        $mail = $_POST["email"];
+        $password = $_POST["password"];
+
+        $sql = "INSERT INTO ";
+    }
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
@@ -33,49 +49,49 @@ include_once("template/head.inc.php");
                                         <div class="uk-width-1-1">
                                             <label for="first-name">voornaam</label><br>
                                             <input class="uk-input" type="text" placeholder="voornaam..."
-                                                id="first-name" required>
+                                                id="first-name" name="first_name" required>
                                         </div>
 
                                         <div class="uk-width-1-4 uk-margin-top">
                                             <label for="infix">Tussenvoegsels </label><br>
                                             <input class="uk-input" type="text" placeholder="tussenvoegsel..."
-                                                id="infix">
+                                                id="infix" name="infix">
                                         </div>
 
                                         <div class="uk-width-1-2 uk-margin-left uk-margin-top">
                                             <label for="last-name">Achternaam</label><br>
                                             <input class="uk-input" type="text" placeholder="achternaam..."
-                                                id="last-name" required>
+                                                id="last-name" name="last_name" required>
                                         </div>
 
                                         <div class="uk-width-1-2 uk-margin-top">
                                             <label for="street-name">Straatnaam</label><br>
                                             <input class="uk-input" type="text" placeholder="straatnaam..."
-                                                id="street-name" required>
+                                                id="street-name" name="street_name" required>
                                         </div>
                                         <div class="uk-width-1-5 uk-margin-left uk-margin-top">
                                             <label for="adress">Huisnummer</label><br>
                                             <input class="uk-input" type="number" placeholder="huisnummer..."
-                                                id="adress" required>
+                                                id="house_number" name="house_number" required>
                                         </div>
                                         <div class="uk-width-1-5 uk-margin-left uk-margin-top">
                                             <label for="additions">Toevoegingen</label><br>
                                             <input class="uk-input" type="text" placeholder="toevoegingen..."
-                                                id="additions">
+                                                id="additions" name="street_name_addon">
                                         </div>
 
                                         <div class="uk-width-1-3 uk-margin-top">
                                             <label for="code">Postcode</label><br>
-                                            <input class="uk-input" type="text" placeholder="postcode..." id="code" required>
+                                            <input class="uk-input" type="text" placeholder="postcode..." id="code" name="zipcode" required>
                                         </div>
                                         <div class="uk-width-1-2 uk-margin-left uk-margin-top">
                                             <label for="town">Plaats</label><br>
-                                            <input class="uk-input" type="text" placeholder="plaats..." id="town" required>
+                                            <input class="uk-input" type="text" placeholder="plaats..." id="town" name="city" required>
                                         </div>
 
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <label for="mail">Email</label><br>
-                                            <input class="uk-input" type="email" name="mail" id="mail"
+                                            <input class="uk-input" type="email" name="email" id="mail"
                                                 placeholder="E-mail adress..." required>
                                         </div>
 
