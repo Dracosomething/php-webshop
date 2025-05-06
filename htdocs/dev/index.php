@@ -7,7 +7,7 @@ try {
     $dbconn = new Database();
     // set the PDO error mode to exception
     $sql = "SELECT * FROM products";
-    $recset = $dbconn->select($sql);
+    $recset = $dbconn->querySql($sql);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
