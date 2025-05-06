@@ -20,7 +20,7 @@ include_once("template/head.inc.php");
     </div>
     <br>
     <div class="uk-flex uk-flex-center">
-        <h3>Haal hier de beste materialen voor beginende en profesionele Stoelen Sleepers</h3>
+        <h3>Haal hier de beste materialen voor beginende en professionele Stoelen Sleepers</h3>
     </div>
     <div class="uk-container">
         <div class="uk-slider-container-offset" uk-slider="autoplay: true; autoplay-interval: 3000; active: first"

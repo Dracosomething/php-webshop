@@ -25,7 +25,7 @@ include_once("template/head.inc.php");
                             </div>
                             <div class="uk-card-body">
                                 <div id="error-card" class="uk-alert-danger" uk-alert style="display: none;">
-                                    <p>something went wrong</p>
+                                    <p>Er is iets mis gegaan</p>
                                     <button class="uk-alert-close" type="button" uk-close></button>
                                 </div>
                                 <form name="register" method="post">

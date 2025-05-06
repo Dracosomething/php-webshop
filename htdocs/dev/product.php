@@ -55,7 +55,7 @@ include_once("template/head.inc.php");
                                                     oninput="enableToCartIfProductAmountGood()">
                                                 <button name="toCart" type="submit"
                                                     class="uk-label uk-button uk-button-primary"><span
-                                                        uk-icon="icon: cart"></span> in Winkelwagen</button>
+                                                        uk-icon="icon: cart"></span>in Winkelwagen</button>
                                             </div>
                                         </form>
                                     </div>
