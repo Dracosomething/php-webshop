@@ -21,15 +21,15 @@ include_once("template/head.inc.php");
                                 </h2>
                             </div>
                             <div class="uk-card-body">
-                                <form name="login" method="POST" action="">
+                                <form name="login" method="POST" action="src/formHandlers/login.handler.php">
                                     <div class="uk-flex uk-flex-column uk-width-1-4">
                                         <div class="uk-flex-row">
                                             <label for="mail">E-mail</label><br>
-                                            <input type="email" id="mail" required>
+                                            <input type="email" id="mail" name="email" required>
                                         </div>
                                         <div class="uk-flex-row">
                                             <label for="password">Password</label><br>
-                                            <input type="password" id="password" required>
+                                            <input type="password" id="password" name="password" required>
                                         </div>
                                         <div class="uk-width-1-1 uk-margin-top">
                                             <hr>

@@ -9,7 +9,7 @@ class LoginHelper
             session_start();
     }
 
-    public function login(mixed $userdata): bool
+    public function login(array $userdata): bool
     {
         if (!is_null($userdata) && !empty($userdata)) {
 
