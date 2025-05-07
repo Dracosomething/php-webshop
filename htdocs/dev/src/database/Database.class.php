@@ -42,7 +42,8 @@ class Database extends PDO
          // converts the selectors and conditions to a string
         $selectString = $ArrayHelper->arrayToString($selectors);
         $conditionString = $ArrayHelper->arrayToString($conditions);
-
+        $conditionString = str_replace(",", " AND", $conditionString);
+        
         $sql = "SELECT $selectString FROM $table WHERE $conditionString"; // creates our sql statement
         return $this->runSql($sql, $params); // runs our sql code on the database
     }
