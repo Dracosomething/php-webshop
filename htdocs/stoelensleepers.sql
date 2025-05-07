@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2025 at 02:20 PM
+-- Generation Time: May 07, 2025 at 09:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -90,9 +90,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ID`, `name`, `description`, `price`, `image`) VALUES
-(1, 'Profesional Chair', 'The perfect chair for an profesional chair dragger', 35.2, './img/chair_advanced.png'),
+(1, 'Professional Chair', 'The perfect chair for an profesional chair dragger', 35.2, './img/chair_advanced.png'),
 (2, 'Beginners Chair', 'A very simple chair, every beginner uses this.', 10.11, './img/chair_beginner.png'),
-(3, 'Advanced Chair', 'A simple yet comfy chair. Very usefull if your experienced at chair pulling.', 20.4, './img/chair_middle.png'),
+(3, 'Advanced Chair', 'A simple yet comfy chair. Very usefull if your experienced at chair pulling.', 20, './img/chair_middle.png'),
 (4, 'Deluxe Chair', 'This chair is for comfort and not designed to be pulled.', 100.4, './img/chair_deluxe.png'),
 (5, 'Gerard', 'Gerard is our best selling chair puller. He use the highly comfortable vidaXL Fauteuil fluweel Blauw. Gerard loves his job.', 40.25, './img/gerard.png');
 
@@ -188,13 +188,13 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
