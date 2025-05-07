@@ -50,4 +50,14 @@ class ArrayHelper
         $string = str_replace("]", "", $string);
         return preg_split("/, /", $string);
     }
+
+    public function splitArrayKeysAndValues(array $array): array {
+        $values = array_values($array);
+        $keys = array_keys($array);
+        $returnVal = [
+            "values" => $values,
+            "keys" => $keys
+        ];
+        return $returnVal;
+    }
 }

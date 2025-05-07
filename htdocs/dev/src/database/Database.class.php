@@ -53,11 +53,14 @@ class Database extends PDO
      * @param array $values the values to be added
      * @param array $columns the targeted columns
      * @param array $params the paramenters required for the sql code - defaults to an empty array
-     * @return array
+     * @return array the updated data
      */
-    public function insert(string $table, array $values, array $columns, array $params = []): array
+    public function insert(string $table, array $data, array $params = []): array
     {
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
+        $array = $ArrayHelper->splitArrayKeysAndValues($data);
+        $columns = $array["keys"];
+        $values = $array["values"];
         // converts the columns array and the values array to strings
         $columnString = $ArrayHelper->arrayToString($columns);
         $valueString = $ArrayHelper->arrayToString($values);
