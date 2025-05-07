@@ -21,7 +21,7 @@ include_once("template/head.inc.php");
                                 </h2>
                             </div>
                             <div class="uk-card-body">
-                                <form name="login">
+                                <form name="login" method="POST" action="">
                                     <div class="uk-flex uk-flex-column uk-width-1-4">
                                         <div class="uk-flex-row">
                                             <label for="mail">E-mail</label><br>

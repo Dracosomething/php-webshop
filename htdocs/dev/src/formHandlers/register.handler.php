@@ -1,10 +1,12 @@
 <?php
 include_once(__DIR__ . "/../helpers/array.helper.php");
 include_once(__DIR__ . "/../database/Database.class.php");
+include_once(__DIR__ . "/../helpers/login.helper.php");
 
 try {
     $dbconn = new Database(); // conects to the database
     $ArrayHelper = new ArrayHelper(); // creates a new array helper
+    $Login = new LoginHelper();
 
     $errorMsg = ""; // the message displayed in the error message thing on the register page
 
@@ -21,20 +23,18 @@ try {
     }
 
     // creates all required registry variables
-    $firstName = $_POST["first_name"];
-    $infix = $_POST["infix"];
-    $lastName = $_POST["last_name"];
-    $streetName = $_POST["street_name"];
-    $adress = $_POST["house_number"];
-    $zipCode = $_POST["zipcode"];
-    $additions = $_POST["street_name_addon"];
-    $town = $_POST["city"];
+    $firstName = "'" . $_POST["first_name"] . "'";
+    $infix = "'" . $_POST["infix"] . "'";
+    $lastName = "'" . $_POST["last_name"] . "'";
+    $streetName = "'" . $_POST["street_name"] . "'";
+    $adress = "'" . $_POST["house_number"] . "'";
+    $zipCode = "'" . $_POST["zipcode"] . "'";
+    $additions = "'" . $_POST["street_name_addon"] . "'";
+    $town = "'" . $_POST["city"] . "'";
     $mail = "'" . $_POST["email"] . "'";
-    $password = $_POST["password"];
+    $password = "'" . $_POST["password"] . "'";
 
-
-    // inserts the new users data into the users table in the database
-    $dbconn->insert("users", [
+    $array = [
         "first_name" => $firstName,
         "infix" => $infix,
         "last_name" => $lastName,
@@ -45,8 +45,18 @@ try {
         "city" => $town,
         "email" => $mail,
         "password" => $password
-    ]);
+    ];
+
+    // inserts the new users data into the users table in the database
+    $dbconn->insert("users", $array);
     
+    $mail = str_replace("'", "", $mail);
+    $password = str_replace("'", "", $password);
+
+    $userdata = $dbconn->runSql("SELECT * FROM users WHERE email = :mail AND password = :pass", [":mail" => $mail, ":pass" => $password]);
+
+    $Login->login($userdata);
+
     header('Location: ../../index.php'); // redirects us to the main page
     exit(); // stops the code
 } catch (PDOException $e) {
