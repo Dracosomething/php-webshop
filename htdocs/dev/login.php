@@ -24,7 +24,7 @@ include_once("template/head.inc.php");
                                 <form name="login">
                                     <div class="uk-flex uk-flex-column uk-width-1-4">
                                         <div class="uk-flex-row">
-                                            <label for="mail">e-mail</label><br>
+                                            <label for="mail">E-mail</label><br>
                                             <input type="email" id="mail" required>
                                         </div>
                                         <div class="uk-flex-row">

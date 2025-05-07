@@ -1,21 +1,71 @@
 <?php
 // include("../../../../pass.php");
-
 class Database extends PDO
 {
+    // database values
     public static $host = "localhost";
     public static $pass = "";
     public static $user = "root";
     public static $dbname = "stoelensleepers";
+
     public function __construct()
     {
+        // constructs a new PDO with our values
         parent::__construct("mysql:host=" . $this::$host . "; dbname=" . $this::$dbname . "; charset=utf8", $this::$user, $this::$pass);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function select($sql) {
-        $query = $this->prepare($sql);
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+    /**
+     * Runs some sql code on the database.
+     * @param string $sql the string with the sql code that should be executed on the database
+     * @param array $params parameters that need to be used in the sql code
+     * @return array the data that the sql targeted
+     */
+    public function runSql(string $sql, array $params = []): array
+    {
+        $query = $this->prepare($sql); // prepares our sql code
+        $query->execute($params); // executes the sql code on the database with our providen parameters
+        return $query->fetchAll(PDO::FETCH_ASSOC); // fetches the data from the database
+    }
+
+    /**
+     * Used to grab some data from the database
+     * @param string $table the name of the targeted table
+     * @param array $selectors the columns that should be selected - defaults to selecting everything
+     * @param array $conditions the conditions that the data should abide to - defaults to an empty array
+     * @param array $params the required parameters - defaults to an empty array 
+     * @return array the data selected from the array
+     */
+    public function select(string $table, array $selectors = ["*"], array $conditions = [], array $params = []): array
+    {
+        $ArrayHelper = new ArrayHelper(); // constructs a new array helper
+         // converts the selectors and conditions to a string
+        $selectString = $ArrayHelper->arrayToString($selectors);
+        $conditionString = $ArrayHelper->arrayToString($conditions);
+
+        $sql = "SELECT $selectString FROM $table WHERE $conditionString"; // creates our sql statement
+        return $this->runSql($sql, $params); // runs our sql code on the database
+    }
+
+    /**
+     * insert new data into the database
+     * @param string $table the name of the targeted table
+     * @param array $values the values to be added
+     * @param array $columns the targeted columns
+     * @param array $params the paramenters required for the sql code - defaults to an empty array
+     * @return array the updated data
+     */
+    public function insert(string $table, array $data, array $params = []): array
+    {
+        $ArrayHelper = new ArrayHelper(); // constructs a new array helper
+        $array = $ArrayHelper->splitArrayKeysAndValues($data);
+        $columns = $array["keys"];
+        $values = $array["values"];
+        // converts the columns array and the values array to strings
+        $columnString = $ArrayHelper->arrayToString($columns);
+        $valueString = $ArrayHelper->arrayToString($values);
+
+        $sql = "INSERT INTO $table($columnString) VALUES ($valueString)"; // creates to sql statement
+        return $this->runSql($sql, $params); // runs our sql statement
     }
 }

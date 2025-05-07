@@ -1,5 +1,6 @@
 <?php
-class DescriptionHelper {
+class DescriptionHelper
+{
 
     /**
      * Method shortens the provided @var description to a length of 60 characters,
@@ -8,8 +9,9 @@ class DescriptionHelper {
      * @param string $description the long format descriptions
      * @return string the shortened description
      */
-    public function writeShortDescription(string $description) {
-        $shortDesc = substr($description,0,60); // shortens the given description to 60 characters !SPACES ARE ONCLUDED IN THE LENGTH.
+    public function writeShortDescription(string $description): string
+    {
+        $shortDesc = substr($description, 0, 60); // shortens the given description to 60 characters !SPACES ARE INCLUDED IN THE LENGTH!
         $shortDesc .= "..."; // adds ... to the end of the description
         return $shortDesc; // returns the description
     }
