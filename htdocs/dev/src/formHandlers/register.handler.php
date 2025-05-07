@@ -32,25 +32,20 @@ try {
     $mail = "'" . $_POST["email"] . "'";
     $password = $_POST["password"];
 
-    $keys = array_keys($_POST); // gets all keys in the array
-    $keys = $ArrayHelper->arrayToString($keys); // converts the keys array to a string
-    $keys = str_replace("password-contr, ", "", $keys); // removes password-contrl from the string
-    $keys = str_replace(", register", "", $keys); // removes register from the string
-    $keyArray = $ArrayHelper->stringToArray($keys); // converts the string back to an array
 
     // inserts the new users data into the users table in the database
     $dbconn->insert("users", [
-        $firstName,
-        $infix,
-        $lastName,
-        $streetName,
-        $adress,
-        $zipCode,
-        $additions,
-        $town,
-        $mail,
-        $password
-    ], $keyArray);
+        "first_name" => $firstName,
+        "infix" => $infix,
+        "last_name" => $lastName,
+        "street_name" => $streetName,
+        "house_number" => $adress,
+        "zipcode" => $zipCode,
+        "street_name_addon" => $additions,
+        "city" => $town,
+        "email" => $mail,
+        "password" => $password
+    ]);
     
     header('Location: ../../index.php'); // redirects us to the main page
     exit(); // stops the code
