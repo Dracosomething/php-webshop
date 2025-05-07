@@ -2,9 +2,6 @@
 include_once(__DIR__ . "/../src/helpers/login.helper.php");
 
 $login = new LoginHelper();
-echo "<pre>";
-print_r($login->getUser());
-echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
