@@ -13,10 +13,10 @@ try {
     }
 
     $sql = "SELECT * FROM products WHERE ID = :id";
-    $recset = $dbconn->querySql($sql, [':id' => $productId]);
+    $recset = $dbconn->runSql($sql, [':id' => $productId]);
 
     if (empty($recset)) {
-        $recset = $dbconn->querySql($sql, [':id' => 1])[0];
+        $recset = $dbconn->runSql($sql, [':id' => 1])[0];
     } else {
         $recset = $recset[0];
     }
