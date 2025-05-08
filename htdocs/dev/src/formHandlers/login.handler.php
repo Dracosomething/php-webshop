@@ -25,16 +25,17 @@ try {
     $password = $_POST["password"]; // grabs the password
     $email = $_POST["email"]; // grabs the email
 
-    $userdata = $dbconn->select("users", ["*"], [
+    // selects the data needed to log into an account
+    $userdata = $dbconn->select("users", ["*"], [ // makes shure the email and password will be the same
         "email = :mail", 
         "password = :pass"
     ], 
-    [
+    [ // binds the parameters to the correct variables
         ":mail" => $email, 
         ":pass" => $password
     ]);
 
-    $Login->login($userdata);
+    $Login->login($userdata); // logs the user in to their account
 
     header('Location: ../../index.php'); // redirects us to the main page
     exit(); // stops the code

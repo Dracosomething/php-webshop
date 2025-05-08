@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2025 at 09:25 AM
+-- Generation Time: May 08, 2025 at 11:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carts` (
-  `ID` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
+  `ID` int(255) NOT NULL,
+  `customer_id` int(255) NOT NULL,
   `ordered` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,8 +40,8 @@ CREATE TABLE `carts` (
 --
 
 CREATE TABLE `cart_items` (
-  `ID` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
+  `ID` int(255) NOT NULL,
+  `order_id` int(255) NOT NULL,
   `product_id` tinyint(1) NOT NULL,
   `amount` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -53,8 +53,8 @@ CREATE TABLE `cart_items` (
 --
 
 CREATE TABLE `orders` (
-  `ID` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
+  `ID` int(255) NOT NULL,
+  `customer_id` int(255) NOT NULL,
   `order_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -65,9 +65,9 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `order_items` (
-  `ID` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `ID` int(255) NOT NULL,
+  `order_id` int(255) NOT NULL,
+  `product_id` int(255) NOT NULL,
   `amount` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -78,7 +78,7 @@ CREATE TABLE `order_items` (
 --
 
 CREATE TABLE `products` (
-  `ID` int(11) NOT NULL,
+  `ID` int(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(250) NOT NULL,
   `price` float NOT NULL,
@@ -103,7 +103,7 @@ INSERT INTO `products` (`ID`, `name`, `description`, `price`, `image`) VALUES
 --
 
 CREATE TABLE `users` (
-  `ID` int(11) NOT NULL,
+  `ID` int(255) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `infix` varchar(15) DEFAULT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -115,6 +115,13 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`ID`, `first_name`, `infix`, `last_name`, `street_name`, `street_name_addon`, `house_number`, `zipcode`, `city`, `email`, `password`) VALUES
+(1, 'lars', '', 'falk', 'eenstraat', '', 12, '6721 EA', 'Zuidhorn', 'larsfalk08@gmail.com', '123456789');
 
 --
 -- Indexes for dumped tables
@@ -164,37 +171,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

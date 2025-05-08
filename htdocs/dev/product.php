@@ -64,7 +64,6 @@ include_once("template/head.inc.php");
                                                     class="uk-form-width-xsmall uk-margin-xsmall-right" value="1"
                                                     min="1" max="50" required
                                                     oninput="enableToCartIfProductAmountGood()">
-                                                <input type="hidden" name="productId" value="<?=$productId?>">
                                                 <button name="toCart" type="submit"
                                                     class="uk-label uk-button uk-button-primary"><span
                                                         uk-icon="icon: cart"></span>in Winkelwagen</button>

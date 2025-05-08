@@ -121,7 +121,7 @@ $login = new LoginHelper();
                                     <li class="uk-nav-divider"></li>
                                     <li>
                                         <form method="POST" action="src/formHandlers/logout.handler.php" style="display: none;" id="logout-form">
-                                            <input type="hidden" name="id" value="<?= $login->getUser()["ID"] ?>">
+                                            <input type="hidden" name="id" value="<?= $login->getUser()["ID"] ?>" />
                                         </form>
                                         <a href="javascript:void"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
