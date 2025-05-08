@@ -1,5 +1,6 @@
 <?php
 // include("../../../../pass.php");
+include_once(__DIR__ . "/../helpers/array.helper.php");
 class Database extends PDO
 {
     // database values
