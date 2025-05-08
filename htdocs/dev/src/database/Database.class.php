@@ -24,7 +24,7 @@ class Database extends PDO
     public function runSql(string $sql, array $params = []): array
     {
         $query = $this->prepare($sql); // prepares our sql code
-        $query->execute($params); // executes the sql code on the database with our providen parameters
+        $query->execute($params); // executes the sql code on the database with our provided parameters
         return $query->fetchAll(PDO::FETCH_ASSOC); // fetches the data from the database
     }
 

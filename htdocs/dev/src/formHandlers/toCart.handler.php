@@ -15,6 +15,12 @@ try {
 
     $Amount = $_POST['amount'];
     $ProductId = $_POST['productId'];
+    $CartId = 1;
+
+    $CartItem = $dbconn->select("'cart_items'", ["*"], ["'product_id' = :ProductId", "'cart_id' = :CartId"], [
+        ":ProductId" => $ProductId,
+        ":CartId" => $CartId
+    ]);
 
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
