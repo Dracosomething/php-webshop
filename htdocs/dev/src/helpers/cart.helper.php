@@ -65,10 +65,11 @@ class Carthelper {
         foreach ($items as $item) {
             $product = $this->dbconn->select("products", // selects the items in the "cart_items" table where the "order_id" column is the same aas the current carts id
             ["*"], 
-            ["product_id = :id"], 
+            ["ID = :id"], 
             [":id" => $item["product_id"]]);
             $item["product"] = $product;
         }
+        var_dump($items);
         return $items;
     }
 
