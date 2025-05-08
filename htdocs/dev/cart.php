@@ -27,6 +27,7 @@ try {
     $cartData = $CartHelper->getCart();
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
+    $cartSize = $CartHelper->getCartSize();
 } catch (PDOException $error) {
     echo "Connection failed: " . $e->getMessage();
     die();
@@ -84,7 +85,7 @@ include_once("template/head.inc.php");
                         <div class="uk-margin-remove">
                             <div class="uk-width-1-1">
                                 <div class="uk-align-left">
-                                    <p class="uk-margin-remove">Artikelen (<?php  ?>)</p>
+                                    <p class="uk-margin-remove">Artikelen (<?= $cartSize ?>)</p>
                                 </div>
                                 <div class="uk-align-right">
                                     <p class="uk-margin-remove">&euro;20,-</p>
