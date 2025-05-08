@@ -58,12 +58,13 @@ include_once("template/head.inc.php");
                                 <p></p>
                                 <div class="uk-container uk-margin-medium-right">
                                     <div class="uk-flex uk-flex-right">
-                                        <form class="uk-margin-large" name="cart" action="toCart.handler.php" method="POST">
+                                        <form class="uk-margin-large" name="cart" action="src/formHandlers/toCart.handler.php" method="POST">
                                             <div uk-form-custom="target: true">
                                                 <input name="amount" type="number"
                                                     class="uk-form-width-xsmall uk-margin-xsmall-right" value="1"
                                                     min="1" max="50" required
                                                     oninput="enableToCartIfProductAmountGood()">
+                                                    <input name="productId" type="hidden" value="<?$productId?>">
                                                 <button name="toCart" type="submit"
                                                     class="uk-label uk-button uk-button-primary"><span
                                                         uk-icon="icon: cart"></span>in Winkelwagen</button>

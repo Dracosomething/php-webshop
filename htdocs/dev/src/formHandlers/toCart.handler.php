@@ -3,7 +3,7 @@ include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/../helpers/array.helper.php");
 include_once(__DIR__ . "/../helpers/cart.helper.php");
 
-
+echo "hello world";
 
 try {
     $ArrayHelper = new ArrayHelper();
@@ -18,28 +18,30 @@ try {
 
     $Amount = $_POST['amount'];
     $ProductID = $_POST['productId'];
-    $CartID = $CartHelper->getCartID();
+    $OrderID = $CartHelper->getCartID();
 
-    $CartItem = $dbconn->select("'cart_items'", ["*"], ["'product_id' = :ProductId", "'cart_id' = :CartId"], [
+    $CartItem = $dbconn->select("'cart_items'", ["*"], ["'product_id' = :ProductId", "'order_id' = :OrderId"], [
         ":ProductId" => $ProductId,
-        ":CartId" => $CartID
+        ":OrderId" => $OrderID
     ]);
 
     if (empty($CartItem) || is_null($CartItem)) 
     {
         $dbconn->insert("'cart_items'", 
             [
-            "cart_id" => ":CartId",
+            "order_id" => ":OrderId",
             "product_id" => ":ProductId",
             "amount" => ":Amount"
         ], 
             [
             ":ProductId"=> $ProductID,
-            ":CartId"=> $CartID,
+            ":OrderId"=> $OrderID,
             ":Amount" => $Amount
         ]);
     } else {
-
+        $dbconn->runSql("UPDATE `cart_items` SET `cart_items`.`amount` = :Amount", [
+            ':Amount' => $CartItem['amount'] + 1
+         ]);
     }
 
 } catch (PDOException $e) {
