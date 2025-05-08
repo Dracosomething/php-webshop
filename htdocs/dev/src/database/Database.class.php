@@ -68,6 +68,9 @@ class Database extends PDO
         $valueString = $ArrayHelper->arrayToString($values);
 
         $sql = "INSERT INTO $table($columnString) VALUES ($valueString)"; // creates the sql statement
+
+        echo $sql;
+
         return $this->runSql($sql, $params); // runs our sql statement
     }
 }
