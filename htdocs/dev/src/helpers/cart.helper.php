@@ -27,7 +27,7 @@ class Carthelper {
         ["*"], 
         ["customer_id = :CustomerID", ""], 
         [":CustomerID" => $userID]);
-        return $cart;
+        return $cart[0];
     }
 
     /**
