@@ -15,61 +15,65 @@ try {
     if ($CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
 
-        $dbconn->insert("carts", 
+        $dbconn->insert(
+            "carts",
             [
                 "customer_id" => $userID
-            ]);
+            ]
+        );
     }
 
     $cart = $CartHelper->getFullCart();
     $cartData = $CartHelper->getCart();
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
-} catch(PDOException $error) {
+} catch (PDOException $error) {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
 
 include_once("template/head.inc.php");
 ?>
-<main>
+<main class="uk-container">
     <div class="uk-margin-right uk-margin-bottom uk-margin-left uk-margin-top">
         <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
             <!-- start first card -->
-            <?php foreach($cartItems as $item): ?>
-            <div class="uk-flex-column uk-width-1-2 uk-margin-xlarge-right">
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-4 uk-margin" uk-grid>
-                    <div class="uk-card-media-left uk-cover-container">
-                        <img src="images/light.jpg" alt="" uk-cover>
-                        <canvas width="600" height="400"></canvas>
-                    </div>
-                    <div class="uk-width-1-2">
-                        <div class="uk-card-body">
-                            <h3 class="uk-card-title"><?= $item["product"]["name"] ?></h3>
-                            <p><?= $DescriptionHelper->writeShortDescription($item["product"]["description"]) ?></p>
+            <?php foreach ($cartItems as $item): ?>
+                <div class="uk-flex-column uk-width-1-2 uk-margin-xlarge-right uk-margin-remove-right">
+                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-4 uk-margin" uk-grid>
+                        <div class="uk-card-media-left uk-cover-container">
+                            <img src="images/light.jpg" alt="" uk-cover>
+                            <canvas width="600" height="400"></canvas>
+                        </div>
+                        <div class="uk-width-1-3">
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title"><?= $item["product"]["name"] ?></h3>
+                                <p><?= $DescriptionHelper->writeShortDescription($item["product"]["description"]) ?></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-4 uk-flex uk-flex-middle uk-flex-center">
+                            <div class="uk-width-1-4 uk-flex uk-flex-column uk-flex-middle">
+                                <form action="" name="amount" method="post">
+                                    <input type="hidden" name="id" value=<?= $item["ID"] ?>>
+                                    <input class="uk-input" name="amount" type="number" value=<?= $item["amount"] ?>>
+                                </form>
+                            </div>
+                            <div class="uk-width-1-4">
+                                <form action="" name="delete" method="post">
+                                    <div class="uk-inline">
+                                        <input type="hidden" name="id" value=<?= $item["ID"] ?>>
+                                        <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
+                                        <input class="uk-input uk-form-blank uk-form-danger" type="button"
+                                            aria-label="Clickable icon">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="uk-width-1-4 uk-flex uk-flex-middle uk-flex-center">
-                        <div class="uk-width-1-4 uk-flex uk-flex-column uk-flex-middle">
-                            <form action="" name="amount" method="post">
-                                <input class="uk-input" type="number" value=<?= $item["amount"] ?>>
-                            </form>
-                        </div>
-                        <div class="uk-width-1-4">
-                            <form action="" name="delete" method="post">
-                                <div class="uk-inline">
-                                    <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
-                                    <input class="uk-input uk-form-blank uk-form-danger" type="button"
-                                        aria-label="Clickable icon">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
                 <?php endforeach; ?>
                 <!-- end first card -->
             </div>
-            <div class="uk-flex-column uk-margin-xlarge-left uk-width-1-4 uk-align-right">
+            <div class="uk-flex-column uk-margin-xlarge-left uk-width-1-3 uk-align-right">
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
                         <h3>
@@ -77,21 +81,21 @@ include_once("template/head.inc.php");
                         </h3>
                     </div>
                     <div class="uk-card-body">
-                        <div class="">
+                        <div class="uk-margin-remove">
                             <div class="uk-width-1-1">
                                 <div class="uk-align-left">
-                                    <p>Artikelen (2)</p>
+                                    <p class="uk-margin-remove">Artikelen (<?php  ?>)</p>
                                 </div>
                                 <div class="uk-align-right">
-                                    <p>&euro;20,-</p>
+                                    <p class="uk-margin-remove">&euro;20,-</p>
                                 </div>
                             </div>
                             <div class="uk-width-1-1">
                                 <div class="uk-align-left">
-                                    <p>Verzendkosten</p>
+                                    <p class="uk-margin-remove">Verzendkosten</p>
                                 </div>
                                 <div class="uk-align-right">
-                                    <p>&euro;0,-</p>
+                                    <p class="uk-margin-remove">&euro;0,-</p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +113,8 @@ include_once("template/head.inc.php");
                             <form method="post" name="order">
                                 <input type="hidden" value="" name="user_id">
                                 <input type="hidden" value="" name="cart_id">
-                                <input type="submit" value="Doorgaan naar besteling" class="uk-button uk-button-primary uk-align-right">
+                                <input type="submit" value="Doorgaan naar besteling"
+                                    class="uk-button uk-button-primary uk-align-right">
                             </form>
                         </div>
                     </div>
