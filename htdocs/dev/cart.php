@@ -10,10 +10,13 @@ try {
     $CartHelper = new Carthelper($dbconn);
     $login = new LoginHelper();
 
-    if (!$CartHelper->doesCartExist()) {
+    if ($CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
 
-        $dbconn->insert("");
+        $dbconn->insert("carts", 
+            [
+                "customer_id" => $userID
+            ]);
     }
 
     $cart = $CartHelper->getFullCart();
