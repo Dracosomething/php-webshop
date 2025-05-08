@@ -46,15 +46,21 @@ class ArrayHelper
      */
     public function stringToArray(string $string): array
     {
-        $string = str_replace("[", "", $string);
-        $string = str_replace("]", "", $string);
-        return preg_split("/, /", $string);
+        $string = str_replace("[", "", $string); // replaces the "[" if present
+        $string = str_replace("]", "", $string); // replaces the "]" if present
+        return preg_split("/, /", $string); // splits the string by ", " 
     }
 
-    public function splitArrayKeysAndValues(array $array): array {
-        $values = array_values($array);
-        $keys = array_keys($array);
-        $returnVal = [
+    /**
+     * splits an array into a 2D array that contains the values of the array using the "values" key and the keys of the array using the "keys" key
+     * @param array $array the array that should get split
+     * @return array{keys: array, values: array} the split array, "keys" is the key for the arrays keys, "values" is the key for the values
+     */
+    public function splitArrayKeysAndValues(array $array): array
+    {
+        $values = array_values($array); // grabs the arrays values
+        $keys = array_keys($array); // grabs the arrays keys
+        $returnVal = [ // constructs the array
             "values" => $values,
             "keys" => $keys
         ];

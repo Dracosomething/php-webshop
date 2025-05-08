@@ -4,7 +4,7 @@ include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/../helpers/login.helper.php");
 
 try {
-    $dbconn = new Database(); // connects to the database
+    $dbconn = new Database(); // conects to the database
     $ArrayHelper = new ArrayHelper(); // creates a new array helper
     $Login = new LoginHelper();
 
@@ -34,7 +34,7 @@ try {
     $mail = $_POST["email"];
     $password = $_POST["password"];
 
-    $array = [
+    $array = [ // constructs an array for the assigning of the variables
         ":first_name" => $firstName,
         ":infix" => $infix,
         ":last_name" => $lastName,
@@ -48,7 +48,9 @@ try {
     ];
 
     // inserts the new users data into the users table in the database
-    $dbconn->insert("users", [
+    $dbconn->insert("users", 
+    // creates the data with the arguments
+    [
         "first_name" => ":first_name",
         "infix" => ":infix",
         "last_name" => ":last_name",
@@ -60,12 +62,11 @@ try {
         "email" => ":email",
         "password" => ":password"
     ], $array);
-    
-    $mail = str_replace("'", "", $mail);
-    $password = str_replace("'", "", $password);
 
+    // grabs the userdata from the database
     $userdata = $dbconn->runSql("SELECT * FROM users WHERE email = :mail AND password = :pass", [":mail" => $mail, ":pass" => $password]);
 
+    // logs the user into their new account
     $Login->login($userdata);
 
     header('Location: ../../index.php'); // redirects us to the main page
