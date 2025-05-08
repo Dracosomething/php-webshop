@@ -13,11 +13,20 @@ class CardHelper {
 
     public function getCard(): array {
         $userID = $this->login->getUser()["ID"];
-        $card = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID"], [":CustomerID" => $userID]);
+        $card = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID", ""], [":CustomerID" => $userID]);
         return $card;
     }
 
-    public function doesCardExist() {
-        
+    public function doesCardExist(): bool {
+        $userID = $this->login->getUser()["ID"];
+        $card = $this->dbconn->select("carts", ["id"], [
+            "customer_id = :CustomerID", 
+            "ordered = 0"], 
+            [":CustomerID" => $userID]);
+        return is_null($card) || empty($card);
+    }
+
+    public function getCardItems(): array {
+        $cart
     }
 }
