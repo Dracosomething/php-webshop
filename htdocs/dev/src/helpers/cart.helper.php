@@ -21,6 +21,7 @@ class Carthelper {
      * @return array the carts data
      */
     public function getCart(): array {
+        if (!$this->login->isLoggedIn()) return [];
         $userID = $this->login->getUser()["ID"]; // grabs the current users id
         if (is_null($userID) || is_nan($userID) || empty($userID) || !isset($userID)) return []; // makes shure the user id exists
         $cart = $this->dbconn->select("carts", // grabs the cart associated with the user
@@ -35,6 +36,7 @@ class Carthelper {
      * @return bool if the user has a cart
      */
     public function doesCartExist(): bool {
+        if (!$this->login->isLoggedIn()) return [];
         $userID = $this->login->getUser()["ID"]; // grabs the current users id
         if (is_null($userID) || is_nan($userID) || empty($userID) || !isset($userID)) return false; // makes shure the user id exists
         $cart = $this->dbconn->select("carts", // grabs the current users cart
