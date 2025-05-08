@@ -21,7 +21,7 @@ class Carthelper {
      * @return array the carts data
      */
     public function getCart(): array {
-        if (!$this->login->isLoggedIn()) return [];
+        if (!$this->login->isLoggedIn() || $this->doesCartExist()) return [];
         $userID = $this->login->getUser()["ID"]; // grabs the current users id
         if (is_null($userID) || is_nan($userID) || empty($userID) || !isset($userID)) return []; // makes shure the user id exists
         $cart = $this->dbconn->select("carts", // grabs the cart associated with the user
@@ -36,7 +36,7 @@ class Carthelper {
      * @return bool if the user has a cart
      */
     public function doesCartExist(): bool {
-        if (!$this->login->isLoggedIn()) return [];
+        if (!$this->login->isLoggedIn()) return false;
         $userID = $this->login->getUser()["ID"]; // grabs the current users id
         if (is_null($userID) || is_nan($userID) || empty($userID) || !isset($userID)) return false; // makes shure the user id exists
         $cart = $this->dbconn->select("carts", // grabs the current users cart
@@ -76,6 +76,7 @@ class Carthelper {
     public function getCartID(): int {
         if (!$this->doesCartExist()) return 0; // checks if the current user has a cart
         $cart = $this->getCart(); // grabs the current users cart
+        if (!key_exists("ID", $cart)) return 0;
         $cartID = $cart["ID"]; // grabs the current carts "ID" value
         return $cartID;
     }
@@ -87,7 +88,7 @@ class Carthelper {
     public function getFullCart(): array {
         if (!$this->doesCartExist()) return []; // checks if the current user has a cart
         $cart = $this->getCart(); // grabs the current users cart
-        $cart["items"] = $this->getCartItems(); // ads the current users cart items to the array under the "items" key
+        $cart["items"] = $this->getCartItems(); // adds the current users cart items to the array under the "items" key
         return $cart;
     }
 
