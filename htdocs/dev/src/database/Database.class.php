@@ -42,7 +42,7 @@ class Database extends PDO
          // converts the selectors and conditions to a string
         $selectString = $ArrayHelper->arrayToString($selectors);
         $conditionString = $ArrayHelper->arrayToString($conditions);
-        $conditionString = str_replace(",", " AND", $conditionString);
+        $conditionString = str_replace(",", " AND", $conditionString); // makes shure every , becomes AND
         
         $sql = "SELECT $selectString FROM $table WHERE $conditionString"; // creates our sql statement
         return $this->runSql($sql, $params); // runs our sql code on the database
@@ -59,9 +59,9 @@ class Database extends PDO
     public function insert(string $table, array $data, array $params = []): array
     {
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
-        $array = $ArrayHelper->splitArrayKeysAndValues($data);
-        $columns = $array["keys"];
-        $values = $array["values"];
+        $array = $ArrayHelper->splitArrayKeysAndValues($data); // splits the data
+        $columns = $array["keys"]; // grabs the keys
+        $values = $array["values"]; // grabs the values
         // converts the columns array and the values array to strings
         $columnString = $ArrayHelper->arrayToString($columns);
         $valueString = $ArrayHelper->arrayToString($values);
