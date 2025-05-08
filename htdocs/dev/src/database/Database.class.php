@@ -3,15 +3,15 @@
 class Database extends PDO
 {
     // database values
-    public static $host = "localhost";
-    public static $pass = "";
-    public static $user = "root";
-    public static $dbname = "stoelensleepers";
+    private $host = "localhost";
+    private $pass = "";
+    private $user = "root";
+    private $dbname = "stoelensleepers";
 
     public function __construct()
     {
         // constructs a new PDO with our values
-        parent::__construct("mysql:host=" . $this::$host . "; dbname=" . $this::$dbname . "; charset=utf8", $this::$user, $this::$pass);
+        parent::__construct("mysql:host=" . $this->host . "; dbname=" . $this->dbname . "; charset=utf8", $this->user, $this->pass);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
