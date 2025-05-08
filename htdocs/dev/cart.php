@@ -6,7 +6,7 @@ include_once("template/head.inc.php");
         <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
             <!-- start first card -->
             <div class="uk-flex-column uk-width-1-2 uk-margin-xlarge-right">
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-3 uk-margin" uk-grid>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-4 uk-margin" uk-grid>
                     <div class="uk-card-media-left uk-cover-container">
                         <img src="images/light.jpg" alt="" uk-cover>
                         <canvas width="600" height="400"></canvas>
@@ -18,15 +18,21 @@ include_once("template/head.inc.php");
                                 incididunt.</p>
                         </div>
                     </div>
-                    <div class="uk-width-1-6 uk-margin-large-top">
-                        <form>
-                            <input class="uk-input uk-width-1-3" type="number" value=1>
-                            <div class="uk-inline">
-                                <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
-                                <input class="uk-input uk-form-blank uk-form-danger" type="button"
-                                    aria-label="Clickable icon">
-                            </div>
-                        </form>
+                    <div class="uk-width-1-4 uk-flex uk-flex-middle uk-flex-center">
+                        <div class="uk-width-1-4 uk-flex uk-flex-column uk-flex-middle">
+                            <form action="" name="amount" method="post">
+                                <input class="uk-input" type="number" value=1>
+                            </form>
+                        </div>
+                        <div class="uk-width-1-4">
+                            <form action="" name="delete" method="post">
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
+                                    <input class="uk-input uk-form-blank uk-form-danger" type="button"
+                                        aria-label="Clickable icon">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <!-- end first card -->
@@ -68,8 +74,11 @@ include_once("template/head.inc.php");
                             </div>
                         </div>
                         <div class="uk-text-center">
-                            <a href="confirm.php" class="uk-button uk-button-primary uk-margin-medium-top">verder naar
-                                Bestelling</a>
+                            <form method="post" name="order">
+                                <input type="hidden" value="" name="user_id">
+                                <input type="hidden" value="" name="cart_id">
+                                <input type="submit" value="Doorgaan naar besteling" class="uk-button uk-button-primary uk-align-right">
+                            </form>
                         </div>
                     </div>
                 </div>
