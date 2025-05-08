@@ -1,5 +1,5 @@
-<footer>
-        <div uk-sticky="position: bottom">
+<footer uk-sticky="position: bottom">
+        <div>
             <div class="uk-overlay-primary">
                 <div class="uk-container">
                     <br>

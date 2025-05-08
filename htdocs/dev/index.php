@@ -1,7 +1,9 @@
 <?php
 include_once("./src/database/Database.class.php");
 include_once("./src/helpers/price.helper.php");
+include_once("./src/helpers/description.helper.php");
 $PriceHelper = new PriceHelper();
+$DescriptionHelper = new DescriptionHelper();
 
 try {
     $dbconn = new Database();
@@ -39,7 +41,7 @@ include_once("template/head.inc.php");
                                     </div>
                                     <div class="uk-card-body">
                                         <h3 class="uk-card-title"><?= $product['name'] ?></h3>
-                                        <p><?= $product['description'] ?></p>
+                                        <p><?= $DescriptionHelper->writeShortDescription($product['description']) ?></p>
                                     </div>
                                     <div class="">
                                         <div class="uk-flex uk-flex-row">
