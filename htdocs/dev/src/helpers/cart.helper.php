@@ -43,7 +43,7 @@ class Carthelper {
             "customer_id = :CustomerID", 
             "ordered = 0"], 
         [":CustomerID" => $userID]);
-        return !is_null($cart) || !empty($cart); // checks if the cart is not null or empty;
+        return (!is_null($cart) || !empty($cart)) && sizeof((array) $cart) < 1; // checks if the cart is not null or empty;
     }
 
     /**
@@ -57,6 +57,13 @@ class Carthelper {
         ["*"], 
         ["order_id = :id"], 
         [":id" => $cartID]);
+        foreach ($items as $item) {
+            $product = $this->dbconn->select("products", // selects the items in the "cart_items" table where the "order_id" column is the same aas the current carts id
+            ["*"], 
+            ["product_id = :id"], 
+            [":id" => $item["product_id"]]);
+            $item["product"] = $product;
+        }
         return $items;
     }
 
@@ -80,5 +87,23 @@ class Carthelper {
         $cart = $this->getCart(); // grabs the current users cart
         $cart["items"] = $this->getCartItems(); // ads the current users cart items to the array under the "items" key
         return $cart;
+    }
+
+    /**
+     * gets the current users cart size
+     * @return int the size of the cart
+     */
+    public function getCartSize(): int {
+        $amount = 0; // defaults to 0
+
+        if ($this->login->isLoggedIn()) { // makes shure the user is logged in
+            $items = $this->getCartItems(); // grabs all items in the cart
+
+            foreach ($items as $item) {
+                $amount++; // increments the amount by 1 for every item in the cart
+            }
+        }
+
+        return $amount;
     }
 }

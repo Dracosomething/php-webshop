@@ -1,7 +1,9 @@
 <?php
 include_once("./src/database/Database.class.php");
 include_once("./src/helpers/price.helper.php");
+include_once("./src/helpers/description.helper.php");
 $PriceHelper = new PriceHelper();
+$DescriptionHelper = new DescriptionHelper();
 
 try {
     $dbconn = new Database();
@@ -17,7 +19,7 @@ include_once("template/head.inc.php");
 ?>
 <main class="uk-container uk-margin uk-margin-xlarge-bottom uk-padding-large">
     <div uk-grid>
-        <div class="uk-width-auto">
+        <div class="uk-width-1-6">
             <div class="uk-form-label">Categorieën</div>
             <div class="uk-form-controls">
                 <label><input class="uk-checkbox" type="checkbox" name="checkbox1">Option 01</label><br>
@@ -55,7 +57,7 @@ include_once("template/head.inc.php");
                             </div>
                             <div class="uk-card-body">
                                 <h3 class="uk-card-title"><?= $product['name'] ?></h3>
-                                <p><?= $product['description'] ?></p>
+                                <p><?= $DescriptionHelper->writeShortDescription($product['description']) ?></p>
                             </div>
                             <div class="uk-card-footer">
                                 <div class="uk-flex uk-flex-row">

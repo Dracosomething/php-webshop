@@ -1,7 +1,16 @@
 <?php
 include_once(__DIR__ . "/../src/helpers/login.helper.php");
+include_once(__DIR__ . "/../src/database/Database.class.php");
+include_once(__DIR__ . "/../src/helpers/cart.helper.php");
 
-$login = new LoginHelper();
+try {
+    $dbconn = new Database();
+    $login = new LoginHelper();
+    $CartHelper = new CartHelper($dbconn);
+} catch(PDOException $error) {
+    echo "Connection failed: " . $e->getMessage();
+    die();
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +69,7 @@ $login = new LoginHelper();
                             <a href="cart.php">
                                 <span uk-icon="icon: cart"></span>
                                 <p>Winkelwagen</p>
-                                <span class="uk-badge">1</span>
+                                <span class="uk-badge"><?= $CartHelper->getCartSize(); ?></span>
                             </a>
                         </li>
                         <li>
