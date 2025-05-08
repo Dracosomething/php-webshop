@@ -6,29 +6,33 @@ include_once(__DIR__ . "/../helpers/array.helper.php");
 try {
     $dbconn = new Database(); // conects to the database
     $ArrayHelper = new ArrayHelper(); // creates a new array helper
-    $Login = new LoginHelper();
+    $Login = new LoginHelper(); // creates a login helper
 
     $errorMsg = ""; // the message displayed in the error message thing on the register page
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
-        $errorMsg = "vul a.u.b. dit formulier in";
+        $errorMsg = "Something went wrong with login in"; // assigns the error message
         header('Location: ../../register.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }
 
     if ($ArrayHelper->anyNotSetOrEmpty($_POST)) { // checks if any of the variables are set
-        $errorMsg = "one of the values has not been set.";
+        $errorMsg = "You are currently not logged in."; // assigns the error message
         header('Location: ../../register.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }
 
-    $password = "'" . $_POST["password"] . "'";
-    $email = "'" . $_POST["email"] . "'";
+    $password = $_POST["password"]; // grabs the password
+    $email = $_POST["email"]; // grabs the email
 
-    $mail = str_replace("'", "", $email);
-    $password = str_replace("'", "", $password);
-
-    $userdata = $dbconn->select("users", ["*"], ["email = :mail", "password = :pass"], [":mail" => $mail, ":pass" => $password]);
+    $userdata = $dbconn->select("users", ["*"], [
+        "email = :mail", 
+        "password = :pass"
+    ], 
+    [
+        ":mail" => $email, 
+        ":pass" => $password
+    ]);
 
     $Login->login($userdata);
 
