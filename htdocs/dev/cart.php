@@ -1,4 +1,30 @@
 <?php
+include_once("src/database/Database.class.php");
+include_once("src/helpers/cart.helper.php");
+include_once("src/helpers/description.helper.php");
+include_once("src/helpers/login.helper.php");
+
+try {
+    $dbconn = new Database();
+    $DescriptionHelper = new DescriptionHelper();
+    $CartHelper = new Carthelper($dbconn);
+    $login = new LoginHelper();
+
+    if (!$CartHelper->doesCartExist()) {
+        $userID = $login->getUser()["ID"];
+
+        $dbconn->insert("");
+    }
+
+    $cart = $CartHelper->getFullCart();
+    $cartData = $CartHelper->getCart();
+    $cartID = $CartHelper->getCartID();
+    $cartItems = $CartHelper->getCartItems();
+} catch(PDOException $error) {
+    echo "Connection failed: " . $e->getMessage();
+    die();
+}
+
 include_once("template/head.inc.php");
 ?>
 <main>
