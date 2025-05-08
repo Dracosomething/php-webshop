@@ -28,6 +28,7 @@ try {
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
     $cartSize = $CartHelper->getCartSize();
+    $cartPrice = $CartHelper->getCartPrise();
 } catch (PDOException $error) {
     echo "Connection failed: " . $e->getMessage();
     die();
@@ -88,7 +89,7 @@ include_once("template/head.inc.php");
                                     <p class="uk-margin-remove">Artikelen (<?= $cartSize ?>)</p>
                                 </div>
                                 <div class="uk-align-right">
-                                    <p class="uk-margin-remove">&euro;20,-</p>
+                                    <p class="uk-margin-remove">&euro;<?= $cartPrice ?></p>
                                 </div>
                             </div>
                             <div class="uk-width-1-1">
@@ -107,13 +108,13 @@ include_once("template/head.inc.php");
                                 <p>Te betalen</p>
                             </div>
                             <div class="uk-align-right uk-text-bolder">
-                                <p>&euro;20,-</p>
+                                <p>&euro;<?= $cartPrice ?></p>
                             </div>
                         </div>
                         <div class="uk-text-center">
                             <form method="post" name="order">
-                                <input type="hidden" value="" name="user_id">
-                                <input type="hidden" value="" name="cart_id">
+                                <input type="hidden" value=<?= $login->getUser()["ID"] ?> name="user_id">
+                                <input type="hidden" value=<?= $cartID ?> name="cart_id">
                                 <input type="submit" value="Doorgaan naar besteling"
                                     class="uk-button uk-button-primary uk-align-right">
                             </form>

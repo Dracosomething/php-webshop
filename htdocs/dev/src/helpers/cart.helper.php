@@ -1,11 +1,13 @@
 <?php
 include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/login.helper.php");
+include_once(__DIR__ . "/price.helper.php");
 
 class Carthelper {
     // attributes
     private Database $dbconn;
     private LoginHelper $login;
+    private PriceHelper $PriceHelper;
 
     /**
      * cconstructs a new CartHelper
@@ -14,6 +16,7 @@ class Carthelper {
     public function __construct(Database $dbconn) {
         $this->dbconn = $dbconn; // assigns the connection
         $this->login = new LoginHelper(); // constructs a new LoginHelper
+        $this->PriceHelper = new PriceHelper();
     }
 
     /**
@@ -74,7 +77,7 @@ class Carthelper {
      * @return int the id of the cart or 0 if they dont have a cart
      */
     public function getCartID(): int {
-        if (!$this->doesCartExist()) return 0; // checks if the current user has a cart
+        if ($this->doesCartExist()) return 0; // checks if the current user has a cart
         $cart = $this->getCart(); // grabs the current users cart
         if (!key_exists("ID", $cart)) return 0;
         $cartID = $cart["ID"]; // grabs the current carts "ID" value
@@ -86,7 +89,7 @@ class Carthelper {
      * @return array an array of everything the current users cart has
      */
     public function getFullCart(): array {
-        if (!$this->doesCartExist()) return []; // checks if the current user has a cart
+        if ($this->doesCartExist()) return []; // checks if the current user has a cart
         $cart = $this->getCart(); // grabs the current users cart
         $cart["items"] = $this->getCartItems(); // adds the current users cart items to the array under the "items" key
         return $cart;
@@ -108,5 +111,20 @@ class Carthelper {
         }
 
         return $amount;
+    }
+
+    public function getCartPrise(): string {
+        $price = 0;
+
+        if ($this->login->isLoggedIn()) { // makes shure the user is logged in
+            $items = $this->getCartItems(); // grabs all items in the cart
+
+            foreach ($items as $item) {
+                $price += $item["product"]["price"];
+            }
+        }
+
+        $priceString = $this->PriceHelper->parseFloatToPrice($price);
+        return $priceString;
     }
 }
