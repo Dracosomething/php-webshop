@@ -21,17 +21,12 @@ class Carthelper {
      * @return array the carts data
      */
     public function getCart(): array {
-<<<<<<< HEAD
-        $userID = $this->login->getUser()["ID"];
-        $cart = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID"], [":CustomerID" => $userID]);
-=======
         $userID = $this->login->getUser()["ID"]; // grabs the current users id
         if (is_null($userID) || is_nan($userID) || empty($userID) || !isset($userID)) return []; // makes shure the user id exists
         $cart = $this->dbconn->select("carts", // grabs the cart associated with the user
         ["*"], 
         ["customer_id = :CustomerID", ""], 
         [":CustomerID" => $userID]);
->>>>>>> 1ed9efd35ee3a9361fd6722d47456be004febdf2
         return $cart;
     }
 
