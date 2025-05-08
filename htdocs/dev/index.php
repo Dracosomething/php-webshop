@@ -20,7 +20,7 @@ include_once("template/head.inc.php");
     </div>
     <br>
     <div class="uk-flex uk-flex-center">
-        <h3>Haal hier de beste materialen voor beginende en professionele Stoelen Sleepers</h3>
+        <h3>Haal hier de beste materialen voor beginnende en professionele Stoelen Sleepers</h3>
     </div>
     <div class="uk-container">
         <div class="uk-slider-container-offset" uk-slider="autoplay: true; autoplay-interval: 3000; active: first"
@@ -30,7 +30,7 @@ include_once("template/head.inc.php");
                 <div class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid">
                     <?php for ($i = 0; $i < 5; $i++):
                         $product = $recset[$i]; ?>
-                        <!-- begin card 1 -->
+                        <!-- begin card -->
                         <div class="uk-link-reset">
                             <div class="uk-card uk-card-default uk-height-1-1">
                                 <a href="product.php?product_id=<?= $product['ID'] ?>">
@@ -54,7 +54,7 @@ include_once("template/head.inc.php");
                                 </a>
                             </div>
                         </div>
-                        <!-- einde card 1 -->
+                        <!-- einde card -->
                     <?php endfor; ?>
                 </div>
 

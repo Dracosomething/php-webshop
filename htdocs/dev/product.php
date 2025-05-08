@@ -58,7 +58,7 @@ include_once("template/head.inc.php");
                                 <p></p>
                                 <div class="uk-container uk-margin-medium-right">
                                     <div class="uk-flex uk-flex-right">
-                                        <form class="uk-margin-large" name="cart">
+                                        <form class="uk-margin-large" name="cart" action="toCart.handler.php" method="POST">
                                             <div uk-form-custom="target: true">
                                                 <input name="amount" type="number"
                                                     class="uk-form-width-xsmall uk-margin-xsmall-right" value="1"
