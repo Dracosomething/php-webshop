@@ -23,32 +23,43 @@ try {
     }
 
     // creates all required registry variables
-    $firstName = "'" . $_POST["first_name"] . "'";
-    $infix = "'" . $_POST["infix"] . "'";
-    $lastName = "'" . $_POST["last_name"] . "'";
-    $streetName = "'" . $_POST["street_name"] . "'";
-    $adress = "'" . $_POST["house_number"] . "'";
-    $zipCode = "'" . $_POST["zipcode"] . "'";
-    $additions = "'" . $_POST["street_name_addon"] . "'";
-    $town = "'" . $_POST["city"] . "'";
-    $mail = "'" . $_POST["email"] . "'";
-    $password = "'" . $_POST["password"] . "'";
+    $firstName = $_POST["first_name"];
+    $infix = $_POST["infix"];
+    $lastName = $_POST["last_name"];
+    $streetName = $_POST["street_name"];
+    $adress = $_POST["house_number"];
+    $zipCode = $_POST["zipcode"];
+    $additions = $_POST["street_name_addon"];
+    $town = $_POST["city"];
+    $mail = $_POST["email"];
+    $password = $_POST["password"];
 
     $array = [
-        "first_name" => $firstName,
-        "infix" => $infix,
-        "last_name" => $lastName,
-        "street_name" => $streetName,
-        "house_number" => $adress,
-        "zipcode" => $zipCode,
-        "street_name_addon" => $additions,
-        "city" => $town,
-        "email" => $mail,
-        "password" => $password
+        ":first_name" => $firstName,
+        ":infix" => $infix,
+        ":last_name" => $lastName,
+        ":street_name" => $streetName,
+        ":house_number" => $adress,
+        ":zipcode" => $zipCode,
+        ":street_name_addon" => $additions,
+        ":city" => $town,
+        ":email" => $mail,
+        ":password" => $password
     ];
 
     // inserts the new users data into the users table in the database
-    $dbconn->insert("users", $array);
+    $dbconn->insert("users", [
+        "first_name" => ":first_name",
+        "infix" => ":infix",
+        "last_name" => ":last_name",
+        "street_name" => ":street_name",
+        "house_number" => ":house_number",
+        "zipcode" => ":zipcode",
+        "street_name_addon" => ":street_name_addon",
+        "city" => ":city",
+        "email" => ":email",
+        "password" => ":password"
+    ], $array);
     
     $mail = str_replace("'", "", $mail);
     $password = str_replace("'", "", $password);
