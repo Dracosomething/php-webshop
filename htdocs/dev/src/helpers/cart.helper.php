@@ -13,8 +13,8 @@ class CartHelper {
 
     public function getCart(): array {
         $userID = $this->login->getUser()["ID"];
-        $card = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID"], [":CustomerID" => $userID]);
-        return $card;
+        $cart = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID"], [":CustomerID" => $userID]);
+        return $cart;
     }
 
     public function doesCartExist() {

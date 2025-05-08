@@ -1,11 +1,14 @@
 <?php 
 include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/../helpers/array.helper.php");
+include_once(__DIR__ . "/../helpers/cart.helper.php");
+
 
 
 try {
     $ArrayHelper = new ArrayHelper();
     $dbconn = new Database(); // connects to the database
+    $CartHelper = new CartHelper($dbconn);
 
     if ($ArrayHelper->anyNotSetOrEmpty($_POST)) { // checks if any of the variables are set
         $errorMsg = "value was invalid";
@@ -15,12 +18,19 @@ try {
 
     $Amount = $_POST['amount'];
     $ProductId = $_POST['productId'];
-    $CartId = 1;
+    $Cart = $CartHelper->getCart();
 
     $CartItem = $dbconn->select("'cart_items'", ["*"], ["'product_id' = :ProductId", "'cart_id' = :CartId"], [
         ":ProductId" => $ProductId,
-        ":CartId" => $CartId
+        ":CartId" => $Cart['ID']
     ]);
+
+    if (empty($CartItem) || is_null($CartItem)) 
+    {
+        $dbconn->insert("'cart_items'", [":CartId", ":ProductId"], []);
+    } else {
+
+    }
 
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
