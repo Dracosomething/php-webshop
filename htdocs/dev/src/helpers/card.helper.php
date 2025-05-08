@@ -27,6 +27,6 @@ class CardHelper {
     }
 
     public function getCardItems(): array {
-        $cart
+        $cart = $this->getCard();
     }
 }
