@@ -17,17 +17,27 @@ try {
     }
 
     $Amount = $_POST['amount'];
-    $ProductId = $_POST['productId'];
-    $Cart = $CartHelper->getCart();
+    $ProductID = $_POST['productId'];
+    $CartID = $CartHelper->getCartID();
 
     $CartItem = $dbconn->select("'cart_items'", ["*"], ["'product_id' = :ProductId", "'cart_id' = :CartId"], [
         ":ProductId" => $ProductId,
-        ":CartId" => $Cart['ID']
+        ":CartId" => $CartID
     ]);
 
     if (empty($CartItem) || is_null($CartItem)) 
     {
-        $dbconn->insert("'cart_items'", [":CartId", ":ProductId"], []);
+        $dbconn->insert("'cart_items'", 
+            [
+            "cart_id" => ":CartId",
+            "product_id" => ":ProductId",
+            "amount" => ":Amount"
+        ], 
+            [
+            ":ProductId"=> $ProductID,
+            ":CartId"=> $CartID,
+            ":Amount" => $Amount
+        ]);
     } else {
 
     }

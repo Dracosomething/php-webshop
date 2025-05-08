@@ -78,7 +78,7 @@ class Carthelper {
     public function getFullCart(): array {
         if (!$this->doesCartExist()) return []; // checks if the current user has a cart
         $cart = $this->getCart(); // grabs the current users cart
-        $cart["items"] = $this->getCartItems(); // ads the current users cart items to the array under the "items" key
+        $cart["items"] = $this->getCartItems(); // adds the current users cart items to the array under the "items" key
         return $cart;
     }
 }
