@@ -2,7 +2,7 @@
 include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/login.helper.php");
 
-class CardHelper {
+class Cartelper {
     private Database $dbconn;
     private LoginHelper $login;
 
@@ -11,22 +11,22 @@ class CardHelper {
         $this->login = new LoginHelper();
     }
 
-    public function getCard(): array {
+    public function getCart(): array {
         $userID = $this->login->getUser()["ID"];
-        $card = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID", ""], [":CustomerID" => $userID]);
-        return $card;
+        $cart = $this->dbconn->select("carts", ["*"], ["customer_id = :CustomerID", ""], [":CustomerID" => $userID]);
+        return $cart;
     }
 
-    public function doesCardExist(): bool {
+    public function doesCartExist(): bool {
         $userID = $this->login->getUser()["ID"];
-        $card = $this->dbconn->select("carts", ["id"], [
+        $cart = $this->dbconn->select("carts", ["id"], [
             "customer_id = :CustomerID", 
             "ordered = 0"], 
             [":CustomerID" => $userID]);
-        return is_null($card) || empty($card);
+        return is_null($cart) || empty($cart);
     }
 
-    public function getCardItems(): array {
-        $cart = $this->getCard();
+    public function getCartItems(): array {
+        $cart = $this->getCart();
     }
 }
