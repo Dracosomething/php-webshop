@@ -10,6 +10,8 @@ try {
     $CartHelper = new Carthelper($dbconn);
     $login = new LoginHelper();
 
+    // echo $CartHelper->doesCartExist() ? "true" : "false";
+
     if ($CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
 
@@ -34,6 +36,7 @@ include_once("template/head.inc.php");
     <div class="uk-margin-right uk-margin-bottom uk-margin-left uk-margin-top">
         <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
             <!-- start first card -->
+            <?php foreach($cartItems as $item): ?>
             <div class="uk-flex-column uk-width-1-2 uk-margin-xlarge-right">
                 <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-4 uk-margin" uk-grid>
                     <div class="uk-card-media-left uk-cover-container">
@@ -42,15 +45,14 @@ include_once("template/head.inc.php");
                     </div>
                     <div class="uk-width-1-2">
                         <div class="uk-card-body">
-                            <h3 class="uk-card-title">Example Product</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt.</p>
+                            <h3 class="uk-card-title"><?= $item["product"]["name"] ?></h3>
+                            <p><?= $DescriptionHelper->writeShortDescription($item["product"]["description"]) ?></p>
                         </div>
                     </div>
                     <div class="uk-width-1-4 uk-flex uk-flex-middle uk-flex-center">
                         <div class="uk-width-1-4 uk-flex uk-flex-column uk-flex-middle">
                             <form action="" name="amount" method="post">
-                                <input class="uk-input" type="number" value=1>
+                                <input class="uk-input" type="number" value=<?= $item["amount"] ?>>
                             </form>
                         </div>
                         <div class="uk-width-1-4">
@@ -64,6 +66,7 @@ include_once("template/head.inc.php");
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
                 <!-- end first card -->
             </div>
             <div class="uk-flex-column uk-margin-xlarge-left uk-width-1-4 uk-align-right">
