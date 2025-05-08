@@ -4,7 +4,7 @@ include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/../helpers/login.helper.php");
 
 try {
-    $dbconn = new Database(); // connects to the database
+    $dbconn = new Database(); // conects to the database
     $ArrayHelper = new ArrayHelper(); // creates a new array helper
     $Login = new LoginHelper();
 
