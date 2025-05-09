@@ -150,11 +150,8 @@ class Carthelper
         if ($this->login->isLoggedIn()) { // makes shure the user is logged in
             $items = $this->getCartItems(); // grabs all items in the cart
 
-            // echo "<pre>";
-            // var_dump($items);
 
             foreach ($items as $item) {
-                // var_dump($item);
                 for ($i = 0; $i <= $item["amount"]; $i++) {
                     $price += $item["product"]["price"];
                 }
