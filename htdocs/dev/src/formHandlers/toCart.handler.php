@@ -52,7 +52,7 @@ try {
         ]);
     } else {
         $dbconn->runSql("UPDATE `cart_items` SET `cart_items`.`amount` = :Amount", [
-            ':Amount' => $CartItem['amount'] + 1
+            ':Amount' => $CartItem['amount'] + $Amount
          ]);
     }
 
