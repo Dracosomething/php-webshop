@@ -16,7 +16,7 @@ try {
         header('Location: ../../index.php'); // redirects us back to the index page
         exit(); // stops the rest of the code from running
     }
-
+    
     $Amount = $_POST['amount'];
     $ProductID = $_POST['productId'];
     $OrderID = $CartHelper->getCartID();
@@ -35,7 +35,7 @@ try {
     $CartItem = $dbconn->select("cart_items", ["*"], ["product_id = :ProductId", "order_id = :OrderId"], [
         ":ProductId" => $ProductID,
         ":OrderId" => $OrderID
-    ]);
+    ])[0];
 
     if (empty($CartItem) || is_null($CartItem)) 
     {
@@ -56,7 +56,7 @@ try {
          ]);
     }
 
-    header("Location: ../../product.php?product_id=$ProductID");
+    // header("Location: ../../product.php?product_id=$ProductID");
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }

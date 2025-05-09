@@ -51,7 +51,7 @@ include_once("template/head.inc.php");
                         </a>  -->
                 <!-- einde card example -->
                 <?php foreach ($recset as $product) : ?>
-                        <a class="uk-card uk-card-home uk-card-default uk-card-small uk-card-hover uk-link-reset" href="product.php">
+                        <a class="uk-card uk-card-home uk-card-default uk-card-small uk-card-hover uk-link-reset" href="product.php?product_id=<?= $product["ID"] ?>">
                             <div class="uk-card-media-top uk-align-center">
                                 <img src=<?= $product['image'] ?> height="100" width="100" alt="" class="uk-align-center">
                             </div>

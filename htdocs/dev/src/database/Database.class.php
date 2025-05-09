@@ -40,11 +40,11 @@ class Database extends PDO
     public function select(string $table, array $selectors = ["*"], array $conditions = [], array $params = []): array
     {
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
-         // converts the selectors and conditions to a string
+        // converts the selectors and conditions to a string
         $selectString = $ArrayHelper->arrayToString($selectors);
         $conditionString = $ArrayHelper->arrayToString($conditions);
         $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
-        
+
         $sql = "SELECT $selectString FROM $table WHERE $conditionString"; // creates our sql statement
         return $this->runSql($sql, $params); // runs our sql code on the database
     }
@@ -69,8 +69,23 @@ class Database extends PDO
 
         $sql = "INSERT INTO $table($columnString) VALUES ($valueString)"; // creates the sql statement
 
-        echo $sql;
-
         return $this->runSql($sql, $params); // runs our sql statement
+    }
+
+    public function update(string $table, array $conditions = [], array $params): array
+    {
+        $ArrayHelper = new ArrayHelper(); // constructs a new array helper
+        $conditionString = $ArrayHelper->arrayToString($conditions);
+        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
+
+
+        $sql = "UPDATE $table SET $conditionString"; // creates the sql statement
+
+        return $this->runSql($sql, $params);
+    }
+
+    public function remove()
+    {
+
     }
 }
