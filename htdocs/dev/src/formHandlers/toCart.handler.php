@@ -51,11 +51,14 @@ try {
             ":Amount" => $Amount
         ]);
     } else {
-        $newamount = $CartItem["amount"] - $Amount;
+        // $newamount = $CartItem["amount"] - $Amount;
 
-        $dbconn->runSql("UPDATE `cart_items` SET `cart_items`.`amount` = :Amount", [
-            ':Amount' => $CartItem['amount'] + $newamount
-         ]);
+        var_dump($CartItem);
+
+        $dbconn->update("cart_items", ["amount = :Amount"], ["product_id = :ProductID"], [
+            ":Amount" => $CartItem['amount'] + $Amount,
+            ":ProductID" => $ProductID
+        ]);
     }
 
     header("Location: ../../product.php?product_id=$ProductID");
