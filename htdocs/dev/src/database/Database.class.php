@@ -72,14 +72,16 @@ class Database extends PDO
         return $this->runSql($sql, $params); // runs our sql statement
     }
 
-    public function update(string $table, array $conditions = [], array $params): array
+    public function update(string $table, array $data = [], array $conditions = [], array $params = []): array
     {
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
+        $dataString = $ArrayHelper->arrayToString($data);
+        $dataString = str_replace(",", " AND", $dataString); // makes sure every , becomes AND
+
         $conditionString = $ArrayHelper->arrayToString($conditions);
         $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
 
-
-        $sql = "UPDATE $table SET $conditionString"; // creates the sql statement
+        $sql = "UPDATE $table SET $dataString WHERE $conditionString"; // creates the sql statement
 
         return $this->runSql($sql, $params);
     }
