@@ -22,8 +22,8 @@ include_once("template/head.inc.php");
         <div class="uk-width-1-6">
             <div class="uk-form-label">Categorieën</div>
             <div class="uk-form-controls">
-                <label><input class="uk-checkbox" type="checkbox" name="checkbox1">Option 01</label><br>
-                <label><input class="uk-checkbox" type="checkbox" name="checkbox2">Option 02</label>
+                <label><input class="uk-checkbox" type="checkbox" name="checkbox1"> Stoelen</label><br>
+                <label><input class="uk-checkbox" type="checkbox" name="checkbox2"> Sleepers</label>
             </div>
         </div>
         <div class="uk-width-1-6">
