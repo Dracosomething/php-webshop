@@ -51,10 +51,6 @@ try {
             ":Amount" => $Amount
         ]);
     } else {
-        // $newamount = $CartItem["amount"] - $Amount;
-
-        var_dump($CartItem);
-
         $dbconn->update("cart_items", ["amount = :Amount"], ["product_id = :ProductID"], [
             ":Amount" => $CartItem['amount'] + $Amount,
             ":ProductID" => $ProductID
