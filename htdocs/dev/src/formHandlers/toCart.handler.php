@@ -51,9 +51,11 @@ try {
             ":Amount" => $Amount
         ]);
     } else {
-        $dbconn->update("cart_items", ["amount = :Amount"], ["product_id = :ProductID"], [
+        $id = $CartItem["ID"];
+
+        $dbconn->update("cart_items", ["amount = :Amount"], ["ID = :id"], [
             ":Amount" => $CartItem['amount'] + $Amount,
-            ":ProductID" => $ProductID
+            ":id" => $id
         ]);
     }
 
