@@ -87,7 +87,10 @@ class Carthelper
                 [":id" => $item["product_id"]]
             );
             $index = array_search($item, $items);
-            $item["product"] = $product[0];
+            if (!is_null($product[0]) || !empty($product[0])) 
+                $item["product"] = $product[0];
+            else 
+                $item["product"] = $product;
             $items[$index] = $item;
         }
         return $items;
@@ -147,7 +150,11 @@ class Carthelper
         if ($this->login->isLoggedIn()) { // makes shure the user is logged in
             $items = $this->getCartItems(); // grabs all items in the cart
 
+            // echo "<pre>";
+            // var_dump($items);
+
             foreach ($items as $item) {
+                // var_dump($item);
                 for ($i = 0; $i <= $item["amount"]; $i++) {
                     $price += $item["product"]["price"];
                 }
