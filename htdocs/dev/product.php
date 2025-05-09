@@ -8,8 +8,6 @@ try {
 
     $productId = $_GET["product_id"];
 
-    echo $productId;
-
     if ($productId == null) {
         $productId = 1;
     }
