@@ -60,7 +60,7 @@ include_once("template/head.inc.php");
                                 </form>
                             </div>
                             <div class="uk-width-1-4">
-                                <form action="src/" name="delete" method="post">
+                                <form action="src/formHandlers/removeCart.handler.php" name="delete" method="post">
                                     <div class="uk-inline">
                                         <input type="hidden" name="id" value=<?= $item["ID"] ?>>
                                         <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
