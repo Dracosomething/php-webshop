@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/../helpers/array.helper.php");
 include_once(__DIR__ . "/../helpers/cart.helper.php");
@@ -37,24 +37,33 @@ try {
         ":OrderId" => $OrderID
     ])[0];
 
-    if (empty($CartItem) || is_null($CartItem)) 
-    {
-        $dbconn->insert("cart_items", 
+    if (empty($CartItem) || is_null($CartItem)) {
+        $dbconn->insert(
+            "cart_items",
             [
-            "order_id" => ":OrderId",
-            "product_id" => ":ProductId",
-            "amount" => ":Amount"
-        ], 
+                "order_id" => ":OrderId",
+                "product_id" => ":ProductId",
+                "amount" => ":Amount"
+            ],
             [
-            ":ProductId"=> $ProductID,
-            ":OrderId"=> $OrderID,
-            ":Amount" => $Amount
-        ]);
+                ":ProductId" => $ProductID,
+                ":OrderId" => $OrderID,
+                ":Amount" => $Amount
+            ]
+        );
     } else {
         $id = $CartItem["ID"];
 
+        $newAmount = $CartItem['amount'] + $Amount;
+
+        if ($newAmount > 50) {
+            $newAmount = 50;
+        } elseif ($newAmount <= 0) {
+            $newAmount = 1;
+        }
+
         $dbconn->update("cart_items", ["amount = :Amount"], ["ID = :id"], [
-            ":Amount" => $CartItem['amount'] + $Amount,
+            ":Amount" => $newAmount,
             ":id" => $id
         ]);
     }

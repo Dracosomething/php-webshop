@@ -14,10 +14,19 @@ try {
         exit(); // stops the rest of the code from running
     }
 
-    $ID = $_POST["id"];
+    $amount = $_POST["amount"];
 
-    $cartItem = $dbconn->remove("cart_items", ["ID = :ID"], [
-        ":ID" => $ID
+    if ($amount > 50) {
+        $amount = 50;
+    } elseif ($amount <= 0) {
+        $amount = 1;
+    } 
+
+    $id = $_POST["id"];
+
+    $dbconn->update("cart_items", ["amount = :Amount"], ["ID = :id"], [
+        ":Amount" => $amount,
+        ":id" => $id
     ]);
 
     header("Location: ../../cart.php");

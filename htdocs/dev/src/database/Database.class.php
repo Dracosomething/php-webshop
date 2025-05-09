@@ -86,8 +86,14 @@ class Database extends PDO
         return $this->runSql($sql, $params);
     }
 
-    public function remove()
+    public function remove(string $table, array $conditions, array $params = []): array
     {
+        $ArrayHelper = new ArrayHelper();
+        $conditionString = $ArrayHelper->arrayToString($conditions);
+        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
 
+        $sql = "DELETE FROM $table WHERE $conditionString";
+
+        return $this->runSql($sql, $params);
     }
 }
