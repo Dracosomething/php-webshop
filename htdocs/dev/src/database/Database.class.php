@@ -86,6 +86,6 @@ class Database extends PDO
 
     public function remove()
     {
-
+        
     }
 }

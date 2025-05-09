@@ -16,7 +16,7 @@ try {
         header('Location: ../../index.php'); // redirects us back to the index page
         exit(); // stops the rest of the code from running
     }
-    
+
     $Amount = $_POST['amount'];
     $ProductID = $_POST['productId'];
     $OrderID = $CartHelper->getCartID();
@@ -51,12 +51,14 @@ try {
             ":Amount" => $Amount
         ]);
     } else {
+        $newamount = $CartItem["amount"] - $Amount;
+
         $dbconn->runSql("UPDATE `cart_items` SET `cart_items`.`amount` = :Amount", [
-            ':Amount' => $CartItem['amount'] + 1
+            ':Amount' => $CartItem['amount'] + $newamount
          ]);
     }
 
-    // header("Location: ../../product.php?product_id=$ProductID");
+    header("Location: ../../product.php?product_id=$ProductID");
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
