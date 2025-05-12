@@ -88,4 +88,8 @@ class ErrorHelper
         }
         return "";
     }
+
+    public function hasError(): bool {
+        return is_null($_SESSION["error"]) || empty($_SESSION["error"]) || !isset($_SESSION["error"]);
+    }
 }

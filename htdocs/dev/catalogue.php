@@ -2,25 +2,39 @@
 include_once("./src/database/Database.class.php");
 include_once("./src/helpers/price.helper.php");
 include_once("./src/helpers/description.helper.php");
-$PriceHelper = new PriceHelper();
-$DescriptionHelper = new DescriptionHelper();
+include_once("./src/helpers/array.helper.php");
 
 try {
     $dbconn = new Database();
+    $PriceHelper = new PriceHelper();
+    $DescriptionHelper = new DescriptionHelper();
+    $ArrayHelper = new ArrayHelper();
     // set the PDO error mode to exception
     $sql = "SELECT * FROM products";
+    $categories = $dbconn->select("categories", ["*"]);
 
     if ($_SERVER['REQUEST_METHOD'] == "GET") {
         if (isset($_GET["search"])) {
-            $sql = "SELECT * FROM products WHERE `name` LIKE %:search%";
             $recset = $dbconn->select("products", ["*"], ['`name` LIKE "%' . $_GET["search"] . '%"']);
+        }
+        if (isset($_GET["category"])) {
+            $conditions = "";
+            $params = [];
+            foreach ($_GET["category"] as $id) {
+                $conditions .= "categorie_id = :ID_$id";
+                $params[":ID_$id"] = $id;
+                if (next($_GET["category"]) != null) {
+                    $conditions .= " OR ";
+                }
+            }
+            $recset = $dbconn->select("products", ["*"], [$conditions], $params);
+            $categoryIdArr = $_GET["category"];
         }
     }
 
     if (!isset($recset)) {
         $recset = $dbconn->runSql($sql);
     }
-
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
     die();
@@ -31,11 +45,25 @@ include_once("template/head.inc.php");
 <main class="uk-container uk-margin uk-margin-xlarge-bottom uk-padding-large">
     <div uk-grid>
         <div class="uk-width-1-6">
-            <div class="uk-form-label">Categorieën</div>
-            <div class="uk-form-controls">
-                <label><input class="uk-checkbox" type="checkbox" name="checkbox1">Option 01</label><br>
-                <label><input class="uk-checkbox" type="checkbox" name="checkbox2">Option 02</label>
-            </div>
+            <form method="get" action="catalogue.php" id="categorie">
+                <div class="uk-form-label">Categorieën</div>
+                <div class="uk-form-controls">
+                    <?php foreach ($categories as $category): ?>
+                        <div>
+                            <input id="checkbox_<?= $category["ID"] ?>" class="uk-checkbox" type="checkbox"
+                                name="category[]" value="<?= $category["ID"] ?>"
+                                onclick="document.getElementById('categorie').submit();" <?php
+                                if (isset($categoryIdArr)) {
+                                    if (in_array("{$category["ID"]}", $categoryIdArr)) {
+                                        echo "checked";
+                                    }
+                                }
+                                ?>>
+                            <label for="checkbox_<?= $category["ID"] ?>"><?= $category["name"] ?></label><br>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </form>
         </div>
         <div class="uk-width-1-6">
             <div class="uk-divider-vertical"></div>
