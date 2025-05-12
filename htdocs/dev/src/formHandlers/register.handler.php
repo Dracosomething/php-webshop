@@ -2,22 +2,40 @@
 include_once(__DIR__ . "/../helpers/array.helper.php");
 include_once(__DIR__ . "/../database/Database.class.php");
 include_once(__DIR__ . "/../helpers/login.helper.php");
+include_once(__DIR__ . "/../helpers/error.helper.php");
 
 try {
     $dbconn = new Database(); // conects to the database
     $ArrayHelper = new ArrayHelper(); // creates a new array helper
     $Login = new LoginHelper();
+    $ErrorHelper = new ErrorHelper();
 
     $errorMsg = ""; // the message displayed in the error message thing on the register page
 
+    if ($_SERVER["HTTP_REFERER"] != "http://localhost/dev/register.php") {
+        $errorMsg = "vul a.u.b. dit formulier in";
+        $ErrorHelper->setErrorMsg($errorMsg);
+        header('Location: ../../register.php'); // redirects us back to the register page
+        exit(); // stops the rest of the code from running
+    }
+
     if ($_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
         $errorMsg = "vul a.u.b. dit formulier in";
+        $ErrorHelper->setErrorMsg($errorMsg);
         header('Location: ../../register.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }
 
     if ($ArrayHelper->anyNotSetOrEmpty($_POST)) { // checks if any of the variables are set
         $errorMsg = "one of the values has not been set.";
+        $ErrorHelper->setErrorMsg($errorMsg);
+        header('Location: ../../register.php'); // redirects us back to the register page
+        exit(); // stops the rest of the code from running
+    }
+
+    if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $errorMsg = "Make shure you properly input the email.";
+        $ErrorHelper->setErrorMsg($errorMsg);
         header('Location: ../../register.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }

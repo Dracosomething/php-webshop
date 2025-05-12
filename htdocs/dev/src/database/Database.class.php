@@ -42,10 +42,14 @@ class Database extends PDO
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
         // converts the selectors and conditions to a string
         $selectString = $ArrayHelper->arrayToString($selectors);
-        $conditionString = $ArrayHelper->arrayToString($conditions);
-        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
+        $sql = "SELECT $selectString FROM $table";
+        if (!empty($conditions)) {
+            $conditionString = $ArrayHelper->arrayToString($conditions);
+            $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
+            $sql .= " WHERE $conditionString";
+        }
 
-        $sql = "SELECT $selectString FROM $table WHERE $conditionString"; // creates our sql statement
+        // creates our sql statement
         return $this->runSql($sql, $params); // runs our sql code on the database
     }
 
@@ -86,8 +90,14 @@ class Database extends PDO
         return $this->runSql($sql, $params);
     }
 
-    public function remove()
+    public function remove(string $table, array $conditions, array $params = []): array
     {
+        $ArrayHelper = new ArrayHelper();
+        $conditionString = $ArrayHelper->arrayToString($conditions);
+        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
 
+        $sql = "DELETE FROM $table WHERE $conditionString";
+
+        return $this->runSql($sql, $params);
     }
 }
