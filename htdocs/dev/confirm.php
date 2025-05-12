@@ -1,4 +1,13 @@
 <?php
+include_once("src/database/Database.class.php");
+include_once("src/helpers/cart.helper.php");
+include_once("src/helpers/description.helper.php");
+include_once("src/helpers/login.helper.php");
+
+
+
+
+
 include_once("template/head.inc.php");
 ?>
 
@@ -51,7 +60,7 @@ include_once("template/head.inc.php");
                 <div class="uk-card-footer">
                     <div class="uk-width-1-1">
                         <div class="uk-align-left uk-text-bolder">
-                            <p>Te betalen</p>
+                            <p>Totaal</p>
                         </div>
                         <div class="uk-align-right uk-text-bolder">
                             <p>&euro;40,-</p>

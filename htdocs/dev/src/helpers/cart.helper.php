@@ -11,8 +11,8 @@ class Carthelper
     private PriceHelper $PriceHelper;
 
     /**
-     * cconstructs a new CartHelper
-     * @param Database $dbconn makes shure we dont have 2 connections open to the database
+     * constructs a new CartHelper
+     * @param Database $dbconn makes sure we dont have 2 connections open to the database
      */
     public function __construct(Database $dbconn)
     {
