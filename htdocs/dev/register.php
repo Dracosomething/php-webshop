@@ -1,4 +1,7 @@
 <?php
+include_once("src/helpers/error.helper.php");
+$ErrorHelper = new ErrorHelper();
+
 include_once("template/head.inc.php");
 ?>
 <main>
@@ -15,10 +18,12 @@ include_once("template/head.inc.php");
                                 </h2>
                             </div>
                             <div class="uk-card-body">
-                                <div id="error-card" class="uk-alert-danger" uk-alert style="display: none;">
-                                    <p>Er is iets mis gegaan</p>
+                                <?php if ($ErrorHelper->hasError()): ?>
+                                <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorCollor() ?>" uk-alert>
+                                    <p><?= $ErrorHelper->getErrorMsg() ?></p>
                                     <button class="uk-alert-close" type="button" uk-close></button>
                                 </div>
+                                <?php endif; ?>
                                 <form name="register" method="post" action="src/formHandlers/register.handler.php">
                                     <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-margin">
                                         <div class="uk-width-1-1">

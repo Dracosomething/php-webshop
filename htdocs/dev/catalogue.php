@@ -2,14 +2,39 @@
 include_once("./src/database/Database.class.php");
 include_once("./src/helpers/price.helper.php");
 include_once("./src/helpers/description.helper.php");
-$PriceHelper = new PriceHelper();
-$DescriptionHelper = new DescriptionHelper();
+include_once("./src/helpers/array.helper.php");
 
 try {
     $dbconn = new Database();
+    $PriceHelper = new PriceHelper();
+    $DescriptionHelper = new DescriptionHelper();
+    $ArrayHelper = new ArrayHelper();
     // set the PDO error mode to exception
     $sql = "SELECT * FROM products";
-    $recset = $dbconn->runSql($sql);
+    $categories = $dbconn->select("categories", ["*"]);
+
+    if ($_SERVER['REQUEST_METHOD'] == "GET") {
+        if (isset($_GET["search"])) {
+            $recset = $dbconn->select("products", ["*"], ['`name` LIKE "%' . $_GET["search"] . '%"']);
+        }
+        if (isset($_GET["category"])) {
+            $conditions = "";
+            $params = [];
+            foreach ($_GET["category"] as $id) {
+                $conditions .= "categorie_id = :ID_$id";
+                $params[":ID_$id"] = $id;
+                if (next($_GET["category"]) != null) {
+                    $conditions .= " OR ";
+                }
+            }
+            $recset = $dbconn->select("products", ["*"], [$conditions], $params);
+            $categoryIdArr = $_GET["category"];
+        }
+    }
+
+    if (!isset($recset)) {
+        $recset = $dbconn->runSql($sql);
+    }
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
     die();
@@ -20,11 +45,25 @@ include_once("template/head.inc.php");
 <main class="uk-container uk-margin uk-margin-xlarge-bottom uk-padding-large">
     <div uk-grid>
         <div class="uk-width-1-6">
-            <div class="uk-form-label">Categorieën</div>
-            <div class="uk-form-controls">
-                <label><input class="uk-checkbox" type="checkbox" name="checkbox1"> Stoelen</label><br>
-                <label><input class="uk-checkbox" type="checkbox" name="checkbox2"> Sleepers</label>
-            </div>
+            <form method="get" action="catalogue.php" id="categorie">
+                <div class="uk-form-label">Categorieën</div>
+                <div class="uk-form-controls">
+                    <?php foreach ($categories as $category): ?>
+                        <div>
+                            <input id="checkbox_<?= $category["ID"] ?>" class="uk-checkbox" type="checkbox"
+                                name="category[]" value="<?= $category["ID"] ?>"
+                                onclick="document.getElementById('categorie').submit();" <?php
+                                if (isset($categoryIdArr)) {
+                                    if (in_array("{$category["ID"]}", $categoryIdArr)) {
+                                        echo "checked";
+                                    }
+                                }
+                                ?>>
+                            <label for="checkbox_<?= $category["ID"] ?>"><?= $category["name"] ?></label><br>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </form>
         </div>
         <div class="uk-width-1-6">
             <div class="uk-divider-vertical"></div>
@@ -50,24 +89,26 @@ include_once("template/head.inc.php");
                             </div>
                         </a>  -->
                 <!-- einde card example -->
-                <?php foreach ($recset as $product) : ?>
-                        <a class="uk-card uk-card-home uk-card-default uk-card-small uk-card-hover uk-link-reset" href="product.php?product_id=<?= $product["ID"] ?>">
-                            <div class="uk-card-media-top uk-align-center">
-                                <img src=<?= $product['image'] ?> height="100" width="100" alt="" class="uk-align-center">
-                            </div>
-                            <div class="uk-card-body">
-                                <h3 class="uk-card-title"><?= $product['name'] ?></h3>
-                                <p><?= $DescriptionHelper->writeShortDescription($product['description']) ?></p>
-                            </div>
-                            <div class="uk-card-footer">
-                                <div class="uk-flex uk-flex-row">
-                                    <div class="uk-flex-column uk-width-1-2"></div>
-                                    <div class="uk-flex-column uk-width-1-1">
-                                        <h4 class="price-text">&euro; <?= $PriceHelper->parseFloatToPrice($product['price']) ?></h4>
-                                    </div>
+                <?php foreach ($recset as $product): ?>
+                    <a class="uk-card uk-card-home uk-card-default uk-card-small uk-card-hover uk-link-reset"
+                        href="product.php?product_id=<?= $product["ID"] ?>">
+                        <div class="uk-card-media-top uk-align-center">
+                            <img src=<?= $product['image'] ?> height="100" width="100" alt="" class="uk-align-center">
+                        </div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-card-title"><?= $product['name'] ?></h3>
+                            <p><?= $DescriptionHelper->writeShortDescription($product['description']) ?></p>
+                        </div>
+                        <div class="uk-card-footer">
+                            <div class="uk-flex uk-flex-row">
+                                <div class="uk-flex-column uk-width-1-2"></div>
+                                <div class="uk-flex-column uk-width-1-1">
+                                    <h4 class="price-text">&euro; <?= $PriceHelper->parseFloatToPrice($product['price']) ?>
+                                    </h4>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>

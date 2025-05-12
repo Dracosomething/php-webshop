@@ -1,4 +1,7 @@
 <?php
+include_once("src/helpers/error.helper.php");
+$ErrorHelper = new ErrorHelper();
+
 include_once("template/head.inc.php");
 ?>
 
@@ -10,6 +13,12 @@ include_once("template/head.inc.php");
                 <div class="uk-flex-row@xl uk-margin-xlarge-bottom"></div>
                 <div class="uk-flex-row@xl">
                     <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                        <?php if ($ErrorHelper->hasError()): ?>
+                            <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorCollor() ?>" uk-alert>
+                                <p><?= $ErrorHelper->getErrorMsg() ?></p>
+                                <button class="uk-alert-close" type="button" uk-close></button>
+                            </div>
+                        <?php endif; ?>
                         <div class="uk-card-media-left uk-cover-container">
                             <img src="images/light.jpg" alt="" uk-cover>
                             <canvas width="600" height="400"></canvas>
@@ -37,8 +46,9 @@ include_once("template/head.inc.php");
                                         <div class="uk-flex-row uk-margin-top">
                                             <div class="uk-clearfix">
                                                 <div class="uk-float-right uk-margin-large-left">
-                                                    <input onclick="addRedTextToEmptyInputFields('login')" class="uk-button uk-button-default" type="submit"
-                                                        name="login" value="login">
+                                                    <input onclick="addRedTextToEmptyInputFields('login')"
+                                                        class="uk-button uk-button-default" type="submit" name="login"
+                                                        value="login">
                                                 </div>
                                                 <div class="uk-float-left uk-margin-large-right">
                                                     <a class="uk-link-text uk-text-primary" href="register.php">

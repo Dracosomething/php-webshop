@@ -54,18 +54,18 @@ include_once("template/head.inc.php");
                         </div>
                         <div class="uk-width-1-4 uk-flex uk-flex-middle uk-flex-center">
                             <div class="uk-width-1-3 uk-flex uk-flex-column uk-flex-middle">
-                                <form action="" name="amount" method="post">
+                                <form action="src/formHandlers/updateCart.handler.php" name="amount" method="post">
                                     <input type="hidden" name="id" value=<?= $item["ID"] ?>>
-                                    <input class="uk-input" name="amount" type="number" value=<?= $item["amount"] ?>>
+                                    <input class="uk-input" name="amount" type="number" value=<?= $item["amount"] ?> max="50" min="1">
                                 </form>
                             </div>
                             <div class="uk-width-1-4">
                                 <form action="src/formHandlers/removeCart.handler.php" name="delete" method="post">
                                     <div class="uk-inline">
                                         <input type="hidden" name="id" value=<?= $item["ID"] ?>>
-                                        <a class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></a>
-                                        <input class="uk-input uk-form-blank uk-form-danger" type="button"
-                                            aria-label="Clickable icon">
+                                        <span class="uk-form-icon uk-form-danger" uk-icon="icon: trash"></span>
+                                        <input class="uk-input uk-form-blank uk-form-danger" type="submit"
+                                            aria-label="Clickable icon" value="">
                                     </div>
                                 </form>
                             </div>
