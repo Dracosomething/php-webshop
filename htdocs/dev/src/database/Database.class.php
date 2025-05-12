@@ -76,6 +76,14 @@ class Database extends PDO
         return $this->runSql($sql, $params); // runs our sql statement
     }
 
+    /**
+     * Updates the database by changing data currently in the database
+     * @param string $table - the table name
+     * @param array $data
+     * @param array $conditions
+     * @param array $params
+     * @return array
+     */
     public function update(string $table, array $data = [], array $conditions = [], array $params = []): array
     {
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
