@@ -76,27 +76,42 @@ class Database extends PDO
         return $this->runSql($sql, $params); // runs our sql statement
     }
 
+    /**
+     * Updates the database by changing data currently in the database
+     * @param string $table - the name of the targeted table
+     * @param array $data - the data to be updated
+     * @param array $conditions - the conditions that the data should abide to - defaults to an empty array
+     * @param array $params the required parameters - defaults to an empty array 
+     * @return array the updates data
+     */
     public function update(string $table, array $data = [], array $conditions = [], array $params = []): array
     {
         $ArrayHelper = new ArrayHelper(); // constructs a new array helper
-        $dataString = $ArrayHelper->arrayToString($data);
-        $dataString = str_replace(",", " AND", $dataString); // makes sure every , becomes AND
+        $dataString = $ArrayHelper->arrayToString($data); // converts the data to a string
+        $dataString = str_replace(",", " AND", $dataString); // makes sure every " ," becomes " AND"
 
-        $conditionString = $ArrayHelper->arrayToString($conditions);
-        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
+        $conditionString = $ArrayHelper->arrayToString($conditions); // converts the conditions to a string
+        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every " ," becomes " AND"
 
         $sql = "UPDATE $table SET $dataString WHERE $conditionString"; // creates the sql statement
 
         return $this->runSql($sql, $params);
     }
 
+    /**
+     * Remove data from the database
+     * @param string $table - the name of the targeted table
+     * @param array $conditions - the conditions for what should get removed
+     * @param array $params the required parameters - defaults to an empty array 
+     * @return array the updated data - probably an empty array
+     */
     public function remove(string $table, array $conditions, array $params = []): array
     {
-        $ArrayHelper = new ArrayHelper();
-        $conditionString = $ArrayHelper->arrayToString($conditions);
-        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every , becomes AND
+        $ArrayHelper = new ArrayHelper(); // creates a new array helper
+        $conditionString = $ArrayHelper->arrayToString($conditions); // converts the conditions to a string
+        $conditionString = str_replace(",", " AND", $conditionString); // makes sure every " ," becomes " AND"
 
-        $sql = "DELETE FROM $table WHERE $conditionString";
+        $sql = "DELETE FROM $table WHERE $conditionString"; // creates the sql code
 
         return $this->runSql($sql, $params);
     }
