@@ -7,10 +7,10 @@ try {
     $dbconn = new Database();
     $login = new LoginHelper();
     $CartHelper = new CartHelper($dbconn);
-} catch(PDOException $error) {
+} catch (PDOException $error) {
     echo "Connection failed: " . $e->getMessage();
     die();
-} 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,9 +75,9 @@ try {
                         <li>
                             <div>
                                 <div class="uk-navbar-item">
-                                    <form class="uk-search uk-search-navbar">
+                                    <form class="uk-search uk-search-navbar" method="get" action="catalogue.php">
                                         <span uk-search-icon></span>
-                                        <input class="uk-search-input" type="search" placeholder="Search"
+                                        <input class="uk-search-input" type="search" placeholder="Search" name="search"
                                             aria-label="Search">
                                     </form>
                                 </div>
@@ -129,7 +129,8 @@ try {
                                     </li>
                                     <li class="uk-nav-divider"></li>
                                     <li>
-                                        <form method="POST" action="src/formHandlers/logout.handler.php" style="display: none;" id="logout-form">
+                                        <form method="POST" action="src/formHandlers/logout.handler.php"
+                                            style="display: none;" id="logout-form">
                                             <input type="hidden" name="id" value="<?= $login->getUser()["ID"] ?>" />
                                         </form>
                                         <a href="javascript:void"

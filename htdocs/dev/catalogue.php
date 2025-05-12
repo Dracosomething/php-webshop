@@ -9,7 +9,18 @@ try {
     $dbconn = new Database();
     // set the PDO error mode to exception
     $sql = "SELECT * FROM products";
-    $recset = $dbconn->runSql($sql);
+
+    if ($_SERVER['REQUEST_METHOD'] == "GET") {
+        if (isset($_GET["search"])) {
+            $sql = "SELECT * FROM products WHERE `name` LIKE %:search%";
+            $recset = $dbconn->select("products", ["*"], ['`name` LIKE "%' . $_GET["search"] . '%"']);
+        }
+    }
+
+    if (!isset($recset)) {
+        $recset = $dbconn->runSql($sql);
+    }
+
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
     die();
@@ -50,24 +61,26 @@ include_once("template/head.inc.php");
                             </div>
                         </a>  -->
                 <!-- einde card example -->
-                <?php foreach ($recset as $product) : ?>
-                        <a class="uk-card uk-card-home uk-card-default uk-card-small uk-card-hover uk-link-reset" href="product.php?product_id=<?= $product["ID"] ?>">
-                            <div class="uk-card-media-top uk-align-center">
-                                <img src=<?= $product['image'] ?> height="100" width="100" alt="" class="uk-align-center">
-                            </div>
-                            <div class="uk-card-body">
-                                <h3 class="uk-card-title"><?= $product['name'] ?></h3>
-                                <p><?= $DescriptionHelper->writeShortDescription($product['description']) ?></p>
-                            </div>
-                            <div class="uk-card-footer">
-                                <div class="uk-flex uk-flex-row">
-                                    <div class="uk-flex-column uk-width-1-2"></div>
-                                    <div class="uk-flex-column uk-width-1-1">
-                                        <h4 class="price-text">&euro; <?= $PriceHelper->parseFloatToPrice($product['price']) ?></h4>
-                                    </div>
+                <?php foreach ($recset as $product): ?>
+                    <a class="uk-card uk-card-home uk-card-default uk-card-small uk-card-hover uk-link-reset"
+                        href="product.php?product_id=<?= $product["ID"] ?>">
+                        <div class="uk-card-media-top uk-align-center">
+                            <img src=<?= $product['image'] ?> height="100" width="100" alt="" class="uk-align-center">
+                        </div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-card-title"><?= $product['name'] ?></h3>
+                            <p><?= $DescriptionHelper->writeShortDescription($product['description']) ?></p>
+                        </div>
+                        <div class="uk-card-footer">
+                            <div class="uk-flex uk-flex-row">
+                                <div class="uk-flex-column uk-width-1-2"></div>
+                                <div class="uk-flex-column uk-width-1-1">
+                                    <h4 class="price-text">&euro; <?= $PriceHelper->parseFloatToPrice($product['price']) ?>
+                                    </h4>
                                 </div>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>
