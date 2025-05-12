@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2025 at 01:57 PM
+-- Generation Time: May 12, 2025 at 02:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,6 +52,14 @@ CREATE TABLE `cart_items` (
   `product_id` tinyint(1) NOT NULL,
   `amount` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart_items`
+--
+
+INSERT INTO `cart_items` (`ID`, `order_id`, `product_id`, `amount`) VALUES
+(17, 36, 7, 7),
+(18, 36, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -122,9 +130,13 @@ INSERT INTO `products` (`ID`, `name`, `description`, `price`, `image`, `categori
 (3, 'Advanced Chair', 'A simple yet comfy chair. Very usefull if your experienced at chair pulling.', 20, './img/chair_middle.png', 1),
 (4, 'Deluxe Chair', 'This chair is for comfort and not designed to be pulled.', 100.4, './img/chair_deluxe.png', 1),
 (5, 'Gerard', 'Gerard is our best selling chair puller. He use the highly comfortable Simple Blue Chair. Gerard loves his job.', 40.25, './img/gerard.png', 2),
-(7, 'jerry', 'The always cheerful jerry will take your chair everywhere. Be it high mountains or low canyons. Not the most expensive to buy but still a good chair puller. Jerry uses the unique Freya 4711.', 15, './img/jerry.png', 2),
+(7, 'jerry', 'The always cheerful jerry will take your chair everywhere. Be it high mountains or low canyons. Not the most expensive to buy but still a good chair puller. Jerry uses the unique Wooden Chair.', 15, './img/jerry.png', 2),
 (8, 'Simple Blue Chair', 'This beautiful blue chair does not only look comfortable but also is comfortable. For just €20,35 the Simple Blue Chair can be yours. It\'s design a combination of a more classical chair with a more modern chair. It\'s made from a nice material so it w', 20.35, './img/blue_chair_comfy.png', 1),
-(9, 'Wooden Chair', 'This simple and classic chair design never fails to be comfortable. It will always be a nice option for beginners.', 12.56, './img/wood_chair.png', 1);
+(9, 'Wooden Chair', 'This simple and classic chair design never fails to be comfortable. It will always be a nice option for beginners.', 12.56, './img/wood_chair.png', 1),
+(10, 'klaas', 'This enthusiastic new rookie of ours will take your chair anywhere. While he might be new to the job, he still is a great choice. He uses our great beginner chair.', 13.24, './img/klaas.png', 2),
+(11, 'Jan Willem', 'This fine gentleman ones pulled the kings throne. While he might be a bid expensive it`s worth it. He uses our greatest chair, the deluxe chair and will take you anywhere.', 100.99, './img/jan_willem.png', 2),
+(12, 'joppie', 'While he doesnt look very happy, we assure you that he is still a great chair puller. HE uses our advanced chair.', 20.23, './img/joppie.png', 2),
+(13, 'joop', 'This is our professional chair puller. He even takes part in competitions. He is fast and can catch up with anyone. Rumours say that he even pulled usane bolds chair. He uses our Proffesional chair', 23, './img/joop.png', 2);
 
 -- --------------------------------------------------------
 
@@ -215,7 +227,7 @@ ALTER TABLE `carts`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -239,7 +251,7 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
