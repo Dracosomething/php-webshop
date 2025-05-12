@@ -9,31 +9,33 @@ try {
     $PriceHelper = new PriceHelper();
     $DescriptionHelper = new DescriptionHelper();
     $ArrayHelper = new ArrayHelper();
-    // set the PDO error mode to exception
+
     $sql = "SELECT * FROM products";
     $categories = $dbconn->select("categories", ["*"]);
 
-    if ($_SERVER['REQUEST_METHOD'] == "GET") {
-        if (isset($_GET["search"])) {
-            $recset = $dbconn->select("products", ["*"], ['`name` LIKE "%' . $_GET["search"] . '%"']);
+    // for searching products and categories
+    if ($_SERVER['REQUEST_METHOD'] == "GET") { // checks if there is a request method and if it is the get method
+        if (isset($_GET["search"])) { // checks if the search info is set
+            $recset = $dbconn->select("products", ["*"], ['`name` LIKE "%' . $_GET["search"] . '%"']); // gets every product matching the input search stuff from the database
         }
-        if (isset($_GET["category"])) {
+        if (isset($_GET["category"])) { // checks if category is set
+            // empty variables as we need to access them on this level
             $conditions = "";
             $params = [];
             foreach ($_GET["category"] as $id) {
-                $conditions .= "categorie_id = :ID_$id";
-                $params[":ID_$id"] = $id;
-                if (next($_GET["category"]) != null) {
-                    $conditions .= " OR ";
+                $conditions .= "categorie_id = :ID_$id"; // adds an argument to the conditions
+                $params[":ID_$id"] = $id; // sets set argument
+                if (next($_GET["category"]) != null) { // checks if there is a next id
+                    $conditions .= " OR "; // adds or for multiple conditions in the sql query
                 }
             }
             $recset = $dbconn->select("products", ["*"], [$conditions], $params);
-            $categoryIdArr = $_GET["category"];
+            $categoryIdArr = $_GET["category"]; // to make life easier so i dont have to constantly do $_GET["category"] to grab smth
         }
     }
 
-    if (!isset($recset)) {
-        $recset = $dbconn->runSql($sql);
+    if (!isset($recset)) { // checks if recset isnt already set
+        $recset = $dbconn->runSql($sql); // defoult catalogue query
     }
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
@@ -53,9 +55,9 @@ include_once("template/head.inc.php");
                             <input id="checkbox_<?= $category["ID"] ?>" class="uk-checkbox" type="checkbox"
                                 name="category[]" value="<?= $category["ID"] ?>"
                                 onclick="document.getElementById('categorie').submit();" <?php
-                                if (isset($categoryIdArr)) {
-                                    if (in_array("{$category["ID"]}", $categoryIdArr)) {
-                                        echo "checked";
+                                if (isset($categoryIdArr)) { // checcks if categoryIdArr is set
+                                    if (in_array($category["ID"], $categoryIdArr)) { // checks if our id is in the array
+                                        echo "checked"; // marks the box as checked
                                     }
                                 }
                                 ?>>
