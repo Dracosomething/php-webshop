@@ -5,8 +5,8 @@ include_once(__DIR__ . "/../helpers/cart.helper.php");
 include_once(__DIR__ . "/../helpers/login.helper.php");
 
 try {
-    $ArrayHelper = new ArrayHelper();
     $dbconn = new Database(); // connects to the database
+    $ArrayHelper = new ArrayHelper();
 
     if ($ArrayHelper->anyNotSetOrEmpty($_POST)) { // checks if any of the variables are set
         $errorMsg = "value was invalid";

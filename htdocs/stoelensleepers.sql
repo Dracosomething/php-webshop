@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2025 at 09:58 AM
+-- Generation Time: May 12, 2025 at 02:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,7 +58,8 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`ID`, `order_id`, `product_id`, `amount`) VALUES
-(16, 36, 1, 50);
+(17, 36, 7, 7),
+(18, 36, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,14 @@ INSERT INTO `products` (`ID`, `name`, `description`, `price`, `image`, `categori
 (2, 'Beginners Chair', 'A very simple chair, every beginner uses this.', 10.11, './img/chair_beginner.png', 1),
 (3, 'Advanced Chair', 'A simple yet comfy chair. Very usefull if your experienced at chair pulling.', 20, './img/chair_middle.png', 1),
 (4, 'Deluxe Chair', 'This chair is for comfort and not designed to be pulled.', 100.4, './img/chair_deluxe.png', 1),
-(5, 'Gerard', 'Gerard is our best selling chair puller. He use the highly comfortable vidaXL Fauteuil fluweel Blauw. Gerard loves his job.', 40.25, './img/gerard.png', 2);
+(5, 'Gerard', 'Gerard is our best selling chair puller. He use the highly comfortable Simple Blue Chair. Gerard loves his job.', 40.25, './img/gerard.png', 2),
+(7, 'jerry', 'The always cheerful jerry will take your chair everywhere. Be it high mountains or low canyons. Not the most expensive to buy but still a good chair puller. Jerry uses the unique Wooden Chair.', 15, './img/jerry.png', 2),
+(8, 'Simple Blue Chair', 'This beautiful blue chair does not only look comfortable but also is comfortable. For just €20,35 the Simple Blue Chair can be yours. It\'s design a combination of a more classical chair with a more modern chair. It\'s made from a nice material so it w', 20.35, './img/blue_chair_comfy.png', 1),
+(9, 'Wooden Chair', 'This simple and classic chair design never fails to be comfortable. It will always be a nice option for beginners.', 12.56, './img/wood_chair.png', 1),
+(10, 'klaas', 'This enthusiastic new rookie of ours will take your chair anywhere. While he might be new to the job, he still is a great choice. He uses our great beginner chair.', 13.24, './img/klaas.png', 2),
+(11, 'Jan Willem', 'This fine gentleman ones pulled the kings throne. While he might be a bid expensive it`s worth it. He uses our greatest chair, the deluxe chair and will take you anywhere.', 100.99, './img/jan_willem.png', 2),
+(12, 'joppie', 'While he doesnt look very happy, we assure you that he is still a great chair puller. HE uses our advanced chair.', 20.23, './img/joppie.png', 2),
+(13, 'joop', 'This is our professional chair puller. He even takes part in competitions. He is fast and can catch up with anyone. Rumours say that he even pulled usane bolds chair. He uses our Proffesional chair', 23, './img/joop.png', 2);
 
 -- --------------------------------------------------------
 
@@ -156,7 +164,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `first_name`, `infix`, `last_name`, `street_name`, `street_name_addon`, `house_number`, `zipcode`, `city`, `email`, `password`) VALUES
 (1, 'lars', '', 'falk', 'eenstraat', '', 12, '6721 EA', 'Zuidhorn', 'larsfalk08@gmail.com', '123456789'),
-(39, '1', '', '1', '1', '', 1, '1', '1', '1@gmail.com', '1');
+(39, '1', '', '1', '1', '', 1, '1', '1', '1@gmail.com', '1'),
+(40, '1', '', '1', '1', '', 1, '1', '1', '1@gmail.com', '1');
 
 --
 -- Indexes for dumped tables
@@ -212,19 +221,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -242,13 +251,13 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
