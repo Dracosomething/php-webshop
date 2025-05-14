@@ -12,7 +12,7 @@ try {
 
     // echo $CartHelper->doesCartExist() ? "true" : "false";
 
-    if ($CartHelper->doesCartExist()) {
+    if (!$CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
 
         $dbconn->insert(
@@ -54,9 +54,10 @@ include_once("template/head.inc.php");
                         </div>
                         <div class="uk-width-1-4 uk-flex uk-flex-middle uk-flex-center">
                             <div class="uk-width-1-3 uk-flex uk-flex-column uk-flex-middle">
-                                <form action="src/formHandlers/updateCart.handler.php" name="amount" method="post">
+                                <form action="src/formHandlers/updateCart.handler.php" name="amount" method="post" id="amount">
                                     <input type="hidden" name="id" value=<?= $item["ID"] ?>>
-                                    <input class="uk-input" name="amount" type="number" value=<?= $item["amount"] ?> max="50" min="1">
+                                    <input class="uk-input" name="amount" type="number" value=<?= $item["amount"] ?> max="50" min="1" 
+                                    onchange="document.getElementById('amount').submit();">
                                 </form>
                             </div>
                             <div class="uk-width-1-4">

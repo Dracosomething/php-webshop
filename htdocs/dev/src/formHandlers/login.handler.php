@@ -33,22 +33,27 @@ try {
         exit(); // stops the rest of the code from running
     }
 
-    $password = $_POST["password"]; // grabs the password
-    $email = $_POST["email"]; // grabs the email
+    $password = htmlentities($_POST["password"]); // grabs the password
+    $email = htmlentities($_POST["email"]); // grabs the email
 
     // selects the data needed to log into an account
     $userdata = $dbconn->select(
         "users",
         ["*"],
         [ // makes shure the email and password will be the same
-            "email = :mail",
-            "password = :pass"
+            "email = :mail"
         ],
         [ // binds the parameters to the correct variables
-            ":mail" => $email,
-            ":pass" => $password
+            ":mail" => $email
         ]
     );
+
+    if (!password_verify($password, $userdata["password"])) {
+        $errorMsg = "The password is invalid";
+        $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
+        header('Location: ../../login.php'); // redirects us back to the register page
+        exit(); // stops the rest of the code from running
+    }
 
     $Login->login($userdata); // logs the user in to their account
 

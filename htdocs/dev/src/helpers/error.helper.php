@@ -25,7 +25,7 @@ class ErrorHelper
     public function setErrorMsg(string $msg): bool
     {
         if (!is_null($msg) && !empty($msg) && isset($msg)) {
-            if (is_null($_SESSION["error"]) && empty($_SESSION["error"]) && !isset($_SESSION["error"])) {
+            if (is_null($_SESSION["error"]) || empty($_SESSION["error"]) || !isset($_SESSION["error"])) {
                 $errorData = [
                     "msg" => "",
                     "collor" => "danger"
