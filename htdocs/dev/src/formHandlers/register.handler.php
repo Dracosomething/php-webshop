@@ -41,16 +41,18 @@ try {
     }
 
     // creates all required registry variables
-    $firstName = $_POST["first_name"];
-    $infix = $_POST["infix"];
-    $lastName = $_POST["last_name"];
-    $streetName = $_POST["street_name"];
-    $adress = $_POST["house_number"];
-    $zipCode = $_POST["zipcode"];
-    $additions = $_POST["street_name_addon"];
-    $town = $_POST["city"];
-    $mail = $_POST["email"];
-    $password = $_POST["password"];
+    $firstName = htmlentities($_POST["first_name"]);
+    $infix = htmlentities($_POST["infix"]);
+    $lastName = htmlentities($_POST["last_name"]);
+    $streetName = htmlentities($_POST["street_name"]);
+    $adress = htmlentities($_POST["house_number"]);
+    $zipCode = htmlentities($_POST["zipcode"]);
+    $additions = htmlentities($_POST["street_name_addon"]);
+    $town = htmlentities($_POST["city"]);
+    $mail = htmlentities($_POST["email"]);
+    $password = htmlentities($_POST["password"]);
+
+    $password = password_hash( $password, "argon2id");
 
     $array = [ // constructs an array for the assigning of the variables
         ":first_name" => $firstName,
@@ -82,7 +84,7 @@ try {
     ], $array);
 
     // grabs the userdata from the database
-    $userdata = $dbconn->runSql("SELECT * FROM users WHERE email = :mail AND password = :pass", [":mail" => $mail, ":pass" => $password]);
+    $userdata = $dbconn->runSql("SELECT * FROM users WHERE email = :mail", [":mail" => $mail]);
 
     // logs the user into their new account
     $Login->login($userdata);

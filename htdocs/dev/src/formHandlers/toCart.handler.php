@@ -23,7 +23,6 @@ try {
 
     $Amount = $_POST['amount'];
     $ProductID = $_POST['productId'];
-    $OrderID = $CartHelper->getCartID();
 
     if (!$CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
@@ -36,10 +35,12 @@ try {
         );
     }
 
+    $OrderID = $CartHelper->getCartID();
+
     $CartItem = $dbconn->select("cart_items", ["*"], ["product_id = :ProductId", "order_id = :OrderId"], [
         ":ProductId" => $ProductID,
         ":OrderId" => $OrderID
-    ])[0];
+    ]);
 
     if (empty($CartItem) || is_null($CartItem)) {
         $dbconn->insert(
@@ -56,9 +57,9 @@ try {
             ]
         );
     } else {
-        $id = $CartItem["ID"];
+        $id = $CartItem[0]["ID"];
 
-        $newAmount = $CartItem['amount'] + $Amount;
+        $newAmount = $CartItem[0]['amount'] + $Amount;
 
         if ($newAmount > 50) {
             $newAmount = 50;

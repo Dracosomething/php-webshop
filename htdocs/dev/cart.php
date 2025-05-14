@@ -12,7 +12,7 @@ try {
 
     // echo $CartHelper->doesCartExist() ? "true" : "false";
 
-    if ($CartHelper->doesCartExist()) {
+    if (!$CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
 
         $dbconn->insert(
