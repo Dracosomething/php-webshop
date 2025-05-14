@@ -1,11 +1,16 @@
 <?php
-include_once("./src/database/Database.class.php");
+include_once("src/database/Database.class.php");
+include_once("src/helpers/cart.helper.php");
+include_once("src/helpers/description.helper.php");
+include_once("src/helpers/login.helper.php");
 
 try {
     $dbconn = new Database();
     // set the PDO error mode to exception
     $sql = "SELECT * FROM products";
     $recset = $dbconn->runSql($sql);
+
+    $cartID = $_POST['cart_id'];
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
@@ -35,9 +40,10 @@ include_once("template/head.inc.php");
          </div>
          <div class="uk-card-footer">
             <div class="uk-flex uk-flex-1 uk-flex-middle uk-flex-center uk-margin-medium-top">
-               <a href="confirm.php" class="uk-button uk-button-primary">
-                  Betalen
-               </a>
+                <form name="order" method="post" action="confirm.php">
+                    <input type="hidden" value=<?= $cartID ?> name="cart_id">
+                    <input type="submit" class="uk-button uk-button-primary" value="Betalen">
+                </form>
             </div>
          </div>
       </div>

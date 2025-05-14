@@ -1,4 +1,23 @@
 <?php
+include_once("src/database/Database.class.php");
+include_once("src/helpers/cart.helper.php");
+include_once("src/helpers/price.helper.php");
+
+try{
+    $dbconn = new Database(); // connects to the database
+    $CartHelper = new CartHelper($dbconn);
+    $PriceHelper = new PriceHelper();
+
+    $cartID = $CartHelper->getCartID();
+    $cartItems = $CartHelper->getCartItems();
+
+    
+} 
+catch(PDOException $e){
+    echo "Connection failed: " . $e->getMessage();
+    die();
+}
+
 include_once("template/head.inc.php");
 ?>
 
@@ -14,8 +33,8 @@ include_once("template/head.inc.php");
                         </div>
                         <div class="uk-float-right">
                             <div class="uk-card uk-card-default uk-card-body">
-                                besteling nummer:<br>
-                                1234567
+                                bestelling nummer:<br>
+                                <?= $cartID ?>
                             </div>
                         </div>
                     </div>
@@ -34,14 +53,27 @@ include_once("template/head.inc.php");
                         <div class="uk-width-1-1">
                             <div class="uk-align-left">
                                 <p class="uk-text-bolder">Artikelen:</p>
-                                <p>Stoel Deluxe (1)</p>
-                                <p>Gerard (1 uur)</p><br>
+                                <?php
+                                    foreach($cartItems as $x) {
+                                        if($x['product']['categorie_id'] == 1)
+                                        {
+                                            echo '<p>'.$x['product']['name'].' ('.$x['amount'].')'.'<p>';
+                                        } elseif($x['product']['categorie_id'] == 2) {
+                                            echo '<p>'.$x['product']['name'].' ('.$x['amount'].' uur)'.'<p>';
+                                        }
+                                    }
+                                ?>
+                                <br>
                                 <p class="uk-text-bolder">Verzendkosten</p>
                             </div>
                             <div class="uk-align-right">
                                 <br>
-                                <p>&euro;20,-</p>
-                                <p>&euro;20,-</p>
+                                <?php
+                                    foreach($cartItems as $x) {
+                                        $result = $x['product']['price'] * $x['amount'];
+                                        echo '<p>&euro;'.$PriceHelper->parseFloatToPrice($result).'</p>';
+                                    }
+                                ?>
                                 <br>
                                 <p class="uk-text-bolder">&euro;0,-</p>
                             </div>
@@ -51,10 +83,12 @@ include_once("template/head.inc.php");
                 <div class="uk-card-footer">
                     <div class="uk-width-1-1">
                         <div class="uk-align-left uk-text-bolder">
-                            <p>Te betalen</p>
+                            <p>Totaal</p>
                         </div>
                         <div class="uk-align-right uk-text-bolder">
-                            <p>&euro;40,-</p>
+                            <?php 
+                                echo '<p>&euro;'.$CartHelper->getCartPrise().'</p>' 
+                            ?>
                         </div>
                     </div>
                 </div>

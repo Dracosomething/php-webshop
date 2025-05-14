@@ -11,8 +11,8 @@ class Carthelper
     private PriceHelper $PriceHelper;
 
     /**
-     * cconstructs a new CartHelper
-     * @param Database $dbconn makes shure we dont have 2 connections open to the database
+     * constructs a new CartHelper
+     * @param Database $dbconn makes sure we dont have 2 connections open to the database
      */
     public function __construct(Database $dbconn)
     {
@@ -31,7 +31,7 @@ class Carthelper
             return [];
         $userID = $this->login->getUser()["ID"]; // grabs the current users id
         if (is_null($userID) || is_nan($userID) || empty($userID) || !isset($userID))
-            return []; // makes shure the user id exists
+            return []; // makes sure the user id exists
         $cart = $this->dbconn->select(
             "carts", // grabs the cart associated with the user
             ["*"],
@@ -132,7 +132,7 @@ class Carthelper
     {
         $amount = 0; // defaults to 0
 
-        if ($this->login->isLoggedIn()) { // makes shure the user is logged in
+        if ($this->login->isLoggedIn()) { // makes sure the user is logged in
             $items = $this->getCartItems(); // grabs all items in the cart
 
             foreach ($items as $item) {
@@ -147,12 +147,12 @@ class Carthelper
     {
         $price = 0;
 
-        if ($this->login->isLoggedIn()) { // makes shure the user is logged in
+        if ($this->login->isLoggedIn()) { // makes sure the user is logged in
             $items = $this->getCartItems(); // grabs all items in the cart
 
 
             foreach ($items as $item) {
-                for ($i = 0; $i <= $item["amount"]; $i++) {
+                for ($i = 1; $i <= $item["amount"]; $i++) {
                     $price += $item["product"]["price"];
                 }
             }
