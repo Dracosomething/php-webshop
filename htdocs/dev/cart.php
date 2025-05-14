@@ -112,7 +112,7 @@ include_once("template/head.inc.php");
                             </div>
                         </div>
                         <div class="uk-text-center">
-                            <form method="post" name="order">
+                            <form method="post" name="order" action="confirm.php">
                                 <input type="hidden" value=<?= $login->getUser()["ID"] ?> name="user_id">
                                 <input type="hidden" value=<?= $cartID ?> name="cart_id">
                                 <input type="submit" value="Doorgaan naar besteling"
