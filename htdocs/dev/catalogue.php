@@ -15,13 +15,11 @@ try {
 
     // for searching products and categories
     if ($_SERVER['REQUEST_METHOD'] == "GET") { // checks if there is a request method and if it is the get method
-        if (isset($_GET["search"])) { // checks if the search info is set
-            $recset = $dbconn->select("products", ["*"], ['`name` LIKE "%' . $_GET["search"] . '%"']); // gets every product matching the input search stuff from the database
-        }
+        $conditionArray = [];
+        $params = [];
         if (isset($_GET["category"])) { // checks if category is set
             // empty variables as we need to access them on this level
-            $conditions = "";
-            $params = [];
+            $conditions = "(";
             foreach ($_GET["category"] as $id) {
                 $conditions .= "categorie_id = :ID_$id"; // adds an argument to the conditions
                 $params[":ID_$id"] = $id; // sets set argument
@@ -29,9 +27,16 @@ try {
                     $conditions .= " OR "; // adds or for multiple conditions in the sql query
                 }
             }
-            $recset = $dbconn->select("products", ["*"], [$conditions], $params);
+            $conditions .= ")";
+            $size = sizeof($conditionArray);
+            $conditionArray[$size + 1] = $conditions;
             $categoryIdArr = $_GET["category"]; // to make life easier so i dont have to constantly do $_GET["category"] to grab smth
         }
+        if (isset($_GET["search"])) { // checks if the search info is set
+            $size = sizeof($conditionArray);
+            $conditionArray[$size + 1] = '`name` LIKE "%' . $_GET["search"] . '%"';
+        }
+        $recset = $dbconn->select("products", ["*"], $conditionArray, $params);
     }
 
     if (!isset($recset)) { // checks if recset isnt already set
@@ -49,6 +54,13 @@ include_once("template/head.inc.php");
         <div class="uk-width-1-6">
             <form method="get" action="catalogue.php" id="categorie">
                 <div class="uk-form-label">Categorieën</div>
+                <input type="hidden" name="search" value="<?php
+                    if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                        if (isset($_GET["search"])) {
+                            echo $_GET["search"];
+                        }
+                    }
+                ?>">
                 <div class="uk-form-controls">
                     <?php foreach ($categories as $category): ?>
                         <div>

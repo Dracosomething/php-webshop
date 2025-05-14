@@ -77,6 +77,13 @@ try {
                                 <div class="uk-navbar-item">
                                     <form class="uk-search uk-search-navbar" method="get" action="catalogue.php">
                                         <span uk-search-icon></span>
+                                        <?php if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                                            if (isset($_GET["category"])) {
+                                                foreach($_GET["category"] as $category) {
+                                                    echo "<input type=\"hidden\" name=\"category[]\" value=\"$category\">";
+                                                }
+                                            }
+                                        } ?>
                                         <input class="uk-search-input" type="search" placeholder="Search" name="search"
                                             aria-label="Search">
                                     </form>
