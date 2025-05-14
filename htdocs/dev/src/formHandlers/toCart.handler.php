@@ -10,6 +10,10 @@ try {
     $CartHelper = new CartHelper($dbconn);
     $login = new LoginHelper();
 
+    if (!$login->isLoggedIn()) {
+        header("Location: ../../login.php");
+        exit();
+    }
 
     if ($ArrayHelper->anyNotSetOrEmpty($_POST)) { // checks if any of the variables are set
         $errorMsg = "value was invalid";
@@ -21,7 +25,7 @@ try {
     $ProductID = $_POST['productId'];
     $OrderID = $CartHelper->getCartID();
 
-    if ($CartHelper->doesCartExist()) {
+    if (!$CartHelper->doesCartExist()) {
         $userID = $login->getUser()["ID"];
 
         $dbconn->insert(
