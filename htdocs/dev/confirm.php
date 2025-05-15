@@ -14,14 +14,46 @@ try {
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
     $user = $login->getUser();
+    $currentDate = date("Y-m-d");
 
-    // $dbconn->remove("carts", [], []);
-    
+    $dbconn->insert("orders", [
+        "customer_id" => ":customer_id",
+        "order_date" => ":order_date",
+        "cart_id" => ":cart_id"
+    ], [
+        ":customer_id" => $user["ID"],
+        ":order_date" => $currentDate,
+        ":cart_id" => $cartID
+    ]);
 
+    $orderID = $dbconn->select("orders", ["ID"], [
+        "customer_id = :customer_id",
+        "cart_id = :cart_id"
+    ], [
+        ":customer_id" => $user["ID"],
+        ":cart_id" => $cartID
+    ]);
+
+    // foreach ($cartItems as $cartItem) {
+    //     $dbconn->insert("order_items", data: 
+    // [
+    //     "order_id" => ":order_id"
+    // ],
+    // [
+    //     ":order_id" => $orderID[0]["ID"]
+    // ]);
+    // }
+
+    // $dbconn->remove("cart_items", [], []);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
+
+echo '<pre>';
+var_dump($user);
+var_dump($cartItems);
+var_dump($orderID);
 
 include_once("template/head.inc.php");
 ?>
