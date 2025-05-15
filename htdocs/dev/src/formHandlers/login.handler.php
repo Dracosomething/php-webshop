@@ -48,7 +48,7 @@ try {
         ]
     );
 
-    if (!password_verify($password, $userdata["password"])) {
+    if (!password_verify($password, $userdata[0]["password"])) {
         $errorMsg = "The password is invalid";
         $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
         header('Location: ../../login.php'); // redirects us back to the register page
