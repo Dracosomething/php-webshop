@@ -71,7 +71,7 @@ class ErrorHelper
 
     public function getErrorMsg(): string
     {
-        if (!is_null($_SESSION["error"]) && !empty($_SESSION["error"]) && isset($_SESSION["error"])) {
+        if (array_key_exists("error", $_SESSION) && (!is_null($_SESSION["error"]) && !empty($_SESSION["error"]) && isset($_SESSION["error"]))) {
             if (!is_null($_SESSION["error"]["msg"]) && !empty($_SESSION["error"]["msg"]) && isset($_SESSION["error"]["msg"])) {
                 return $_SESSION["error"]["msg"];
             }
@@ -81,7 +81,7 @@ class ErrorHelper
 
     public function getErrorCollor(): string
     {
-        if (!is_null($_SESSION["error"]) && !empty($_SESSION["error"]) && isset($_SESSION["error"])) {
+        if (array_key_exists("error", $_SESSION) && (!is_null($_SESSION["error"]) && !empty($_SESSION["error"]) && isset($_SESSION["error"]))) {
             if (!is_null($_SESSION["error"]["collor"]) && !empty($_SESSION["error"]["collor"]) && isset($_SESSION["error"]["collor"])) {
                 return $_SESSION["error"]["collor"];
             }
@@ -90,6 +90,6 @@ class ErrorHelper
     }
 
     public function hasError(): bool {
-        return is_null($_SESSION["error"]) || empty($_SESSION["error"]) || !isset($_SESSION["error"]);
+        return array_key_exists("error", $_SESSION) && (is_null($_SESSION["error"]) || empty($_SESSION["error"]) || !isset($_SESSION["error"]));
     }
 }

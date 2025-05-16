@@ -12,7 +12,7 @@ try {
 
     $errorMsg = ""; // the message displayed in the error message thing on the register page
 
-    if ($_SERVER["HTTP_REFERER"] != "http://localhost/dev/login.php" || $_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
+    if ($_SERVER["HTTP_REFERER"] != "http://localhost/login.php" || $_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
         $errorMsg = "Something went wrong with login in"; // assigns the error message
         $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
         header('Location: ../../register.php'); // redirects us back to the register page
