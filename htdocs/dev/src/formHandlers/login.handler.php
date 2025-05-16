@@ -12,24 +12,24 @@ try {
 
     $errorMsg = ""; // the message displayed in the error message thing on the register page
 
-    if ($_SERVER["HTTP_REFERER"] != "http://localhost/login.php" || $_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
+    if ($_SERVER["HTTP_REFERER"] != "http://localhost/dev/login.php" || $_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
         $errorMsg = "Something went wrong with login in"; // assigns the error message
         $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
-        header('Location: ../../register.php'); // redirects us back to the register page
+        header('Location: ../../login.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }
 
     if ($ArrayHelper->anyNotSetOrEmpty($_POST)) { // checks if any of the variables are set
         $errorMsg = "You are currently not logged in."; // assigns the error message
         $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
-        header('Location: ../../register.php'); // redirects us back to the register page
+        header('Location: ../../login.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }
 
     if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $errorMsg = "Make shure you properly input the email.";
         $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
-        header('Location: ../../register.php'); // redirects us back to the register page
+        header('Location: ../../login.php'); // redirects us back to the register page
         exit(); // stops the rest of the code from running
     }
 
