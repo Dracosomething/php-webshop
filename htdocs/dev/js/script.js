@@ -10,7 +10,7 @@ function each(obj, cb) {
 function toNumber(value) {
     const number = Number(value);
     return isNaN(number) ? false : number;
-  }
+}
 
 function isBetween(obj, min, max) {
     const value = toNumber(obj);
@@ -67,6 +67,18 @@ function addRedTextToEmptyInputFields(formName, checkForRegisterpage = false) {
                 error.style.display = "none"
             }
         }
+    }
+}
+
+function disableConfirm() {
+    var button = document.forms["order"]["submit"];
+    var bank = document.forms["order"]["bank"];
+    var id = bank.value;
+    console.log("ewrwrwr")
+    if (id == 0) {
+        button.setAttribute("disabled", "");
+    } else {
+        button.removeAttribute("disabled");
     }
 }
 
