@@ -3,7 +3,22 @@ include_once("src/database/Database.class.php");
 include_once("src/helpers/cart.helper.php");
 include_once("src/helpers/price.helper.php");
 include_once("src/helpers/login.helper.php");
+include_once("src/helpers/error.helper.php");
+$ErrorHelper = new ErrorHelper();
 
+if ($_SERVER["HTTP_REFERER"] != "http://localhost/dev/payment.php" || $_SERVER["REQUEST_METHOD"] != "POST") { // checks if the user hasnt filled the form in
+    $errorMsg = "Something went wrong with refering to confirm"; // assigns the error message
+    $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
+    header('Location: payment.php'); // redirects us back to the register page
+    exit(); // stops the rest of the code from running
+}
+
+if ($_POST["bank"] == 0) {
+    $errorMsg = "You have to select a bank."; // assigns the error message
+    $ErrorHelper->setErrorMsg($errorMsg); // sets the error message
+    header('Location: payment.php'); // redirects us back to the register page
+    exit(); // stops the rest of the code from running
+}
 
 try {
     $dbconn = new Database();
