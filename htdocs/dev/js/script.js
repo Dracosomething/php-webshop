@@ -74,7 +74,6 @@ function disableConfirm() {
     var button = document.forms["order"]["submit"];
     var bank = document.forms["order"]["bank"];
     var id = bank.value;
-    console.log("ewrwrwr")
     if (id == 0) {
         button.setAttribute("disabled", "");
     } else {

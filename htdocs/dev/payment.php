@@ -1,16 +1,14 @@
 <?php
 include_once("src/database/Database.class.php");
-include_once("src/helpers/cart.helper.php");
-include_once("src/helpers/description.helper.php");
-include_once("src/helpers/login.helper.php");
+include_once("src/helpers/error.helper.php");
 
 try {
    $dbconn = new Database();
+   $ErrorHelper = new ErrorHelper();
    // set the PDO error mode to exception
    $sql = "SELECT * FROM products";
    $recset = $dbconn->runSql($sql);
 
-   $cartID = $_POST['cart_id'];
 } catch (PDOException $e) {
    echo "Connection failed: " . $e->getMessage();
 }
@@ -20,6 +18,12 @@ include_once("template/head.inc.php");
 
 <main class="uk-container">
    <section class="uk-width-1-3  uk-margin-auto uk-margin-xlarge-top uk-margin-xlarge-bottom">
+         <?php if (!$ErrorHelper->hasError()): ?>
+      <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorCollor() ?>" uk-alert>
+         <p><?= $ErrorHelper->getErrorMsg() ?></p>
+         <button class="uk-alert-close" type="button" uk-close></button>
+      </div>
+   <?php endif; ?>
       <form name="order" method="post" action="confirm.php">
          <div
             class="uk-card-default uk-card-small uk-flex uk-flex uk-flex-column uk-flex-between uk-padding-small uk-flex-1">
@@ -42,7 +46,6 @@ include_once("template/head.inc.php");
             </div>
             <div class="uk-card-footer">
                <div class="uk-flex uk-flex-1 uk-flex-middle uk-flex-center uk-margin-medium-top">
-                  <input type="hidden" value=<?= $cartID ?> name="cart_id">
                   <input type="submit" class="uk-button uk-button-primary" value="Betalen" name="submit" disabled>
                </div>
             </div>
