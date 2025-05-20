@@ -28,13 +28,13 @@ include_once("template/head.inc.php");
             <div class="uk-flex uk-flex-between uk-gap">
                <img src="img/IDEAL.png" class="" alt="" title="" />
                <select name="bank">
-                  <option>Kies uw bank</option>
+                  <option value="0">Kies uw bank</option>
                   <option value="1">Rabobank</option>
-                  <option value="1">ASN Bank</option>
-                  <option value="1">ING Bank</option>
-                  <option value="1">Regiobank</option>
-                  <option value="1">SNS Bank</option>
-                  <option value="1">ABNAMRO Bank</option>
+                  <option value="2">ASN Bank</option>
+                  <option value="3">ING Bank</option>
+                  <option value="4">Regiobank</option>
+                  <option value="5">SNS Bank</option>
+                  <option value="6">ABNAMRO Bank</option>
                </select>
             </div>
          </div>

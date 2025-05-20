@@ -143,7 +143,7 @@ class Carthelper
         return $amount;
     }
 
-    public function getCartPrise(): string
+    public function getCartPrize(): string
     {
         $price = 0;
 
