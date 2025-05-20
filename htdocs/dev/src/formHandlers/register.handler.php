@@ -12,7 +12,7 @@ try {
 
     $errorMsg = ""; // the message displayed in the error message thing on the register page
 
-    if ($_SERVER["HTTP_REFERER"] != "http://localhost/register.php") { // makes sure were from the correct page
+    if ($_SERVER["HTTP_REFERER"] != "http://localhost/dev/register.php") { // makes sure were from the correct page
         $errorMsg = "vul a.u.b. dit formulier in";
         $ErrorHelper->setErrorMsg($errorMsg); // sets the error message 
         header('Location: ../../register.php'); // redirects us back to the register page

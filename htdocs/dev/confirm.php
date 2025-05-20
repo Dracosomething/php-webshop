@@ -13,6 +13,7 @@ try {
 
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
+    $price = $CartHelper->getCartPrise();
     $user = $login->getUser();
     $currentDate = date("Y-m-d");
 
@@ -34,26 +35,31 @@ try {
         ":cart_id" => $cartID
     ]);
 
-    // foreach ($cartItems as $cartItem) {
-    //     $dbconn->insert("order_items", data: 
-    // [
-    //     "order_id" => ":order_id"
-    // ],
-    // [
-    //     ":order_id" => $orderID[0]["ID"]
-    // ]);
-    // }
+    foreach ($cartItems as $cartItem) {
+        $id = $orderID[0]["ID"];
+        $amount = $cartItem["amount"];
+        $item_id = $cartItem["ID"];
+        $dbconn->insert(
+            "order_items",
+            [
+                "order_id" => ":order_id",
+                "product_id" => ":productId",
+                "amount" => ":amount"
+            ],
+            [
+                ":order_id" => $id,
+                ":productId" => $item_id,
+                ":amount" => $amount
+            ]
+        );
+        $dbconn->remove("cart_items", ["ID = :id"], [":id" => $item_id]);
+    }
 
-    // $dbconn->remove("cart_items", [], []);
+    $dbconn->remove("carts", ["ID = :id"], [":id" => $cartID]);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
-
-echo '<pre>';
-var_dump($user);
-var_dump($cartItems);
-var_dump($orderID);
 
 include_once("template/head.inc.php");
 ?>
@@ -123,7 +129,7 @@ include_once("template/head.inc.php");
                         </div>
                         <div class="uk-align-right uk-text-bolder">
                             <?php
-                            echo '<p>&euro;' . $CartHelper->getCartPrise() . '</p>'
+                            echo '<p>&euro;' . $price . '</p>'
                                 ?>
                         </div>
                     </div>

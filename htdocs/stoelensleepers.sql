@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2025 at 02:13 PM
+-- Generation Time: May 16, 2025 at 09:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 SET
@@ -36,14 +36,6 @@ CREATE TABLE
     `ordered` tinyint (1) NOT NULL DEFAULT 0
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
---
--- Dumping data for table `carts`
---
-INSERT INTO
-  `carts` (`ID`, `customer_id`, `ordered`)
-VALUES
-  (36, 1, 0);
-
 -- --------------------------------------------------------
 --
 -- Table structure for table `cart_items`
@@ -55,15 +47,6 @@ CREATE TABLE
     `product_id` tinyint (1) NOT NULL,
     `amount` int (50) NOT NULL
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
-
---
--- Dumping data for table `cart_items`
---
-INSERT INTO
-  `cart_items` (`ID`, `order_id`, `product_id`, `amount`)
-VALUES
-  (17, 36, 7, 7),
-  (18, 36, 2, 9);
 
 -- --------------------------------------------------------
 --
@@ -92,6 +75,7 @@ CREATE TABLE
   `orders` (
     `ID` int (255) NOT NULL,
     `customer_id` int (255) NOT NULL,
+    `cart_id` int (255) NOT NULL,
     `order_date` date NOT NULL
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
@@ -270,42 +254,29 @@ INSERT INTO
 VALUES
   (
     1,
+    'Martijn',
+    '',
+    'Alblas',
+    'nothingstreet',
+    '',
+    420,
+    '7860AB',
+    'Hello City',
+    'troll@mcalblas.com',
+    '$argon2id$v=19$m=65536,t=4,p=1$elpzNlBoQ2xOWWhJWXN3Yg$laJpwdSFcksvGtY4uQjR44QzSfb8cGc7LUC/Nt37M3U'
+  ),
+  (
+    2,
     'lars',
     '',
     'falk',
     'eenstraat',
     '',
-    12,
+    123,
     '6721 EA',
     'Zuidhorn',
     'larsfalk08@gmail.com',
-    '123456789'
-  ),
-  (
-    39,
-    '1',
-    '',
-    '1',
-    '1',
-    '',
-    1,
-    '1',
-    '1',
-    '1@gmail.com',
-    '1'
-  ),
-  (
-    40,
-    '1',
-    '',
-    '1',
-    '1',
-    '',
-    1,
-    '1',
-    '1',
-    '1@gmail.com',
-    '1'
+    '$argon2id$v=19$m=65536,t=4,p=1$aWZQd2taVzBVOWFmS3Bnag$pS/ALLQEy2bBVVc1hKlKa27FtK1yY4/wPUl5bF5lDeA'
   );
 
 --
@@ -353,41 +324,43 @@ ALTER TABLE `users` ADD PRIMARY KEY (`ID`);
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 37;
+AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 19;
+AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `orders` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `orders` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
+AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
-ALTER TABLE `order_items` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `order_items` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
+AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 14;
+AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users` MODIFY `ID` int (255) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 41;
+AUTO_INCREMENT = 1;
 
 COMMIT;
 
