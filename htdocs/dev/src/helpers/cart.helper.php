@@ -61,6 +61,7 @@ class Carthelper
             ],
             [":CustomerID" => $userID]
         );
+        
         return (!is_null($cart) || !empty($cart)) && sizeof((array) $cart) > 0; // checks if the cart is not null or empty;
     }
 

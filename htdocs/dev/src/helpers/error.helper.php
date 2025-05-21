@@ -92,4 +92,8 @@ class ErrorHelper
     public function hasError(): bool {
         return !array_key_exists("error", $_SESSION) && (is_null($_SESSION["error"]) || empty($_SESSION["error"]) || !isset($_SESSION["error"]));
     }
+
+    public function clearError() : void {
+        
+    }
 }

@@ -112,11 +112,13 @@ include_once("template/head.inc.php");
                             </div>
                         </div>
                         <div class="uk-text-center">
+                            <?php if ($cartSize > 0): ?>
                             <form method="post" name="order" action="payment.php">
                                 <input type="hidden" value=<?= $cartID ?> name="cart_id">
                                 <input type="submit" value="Doorgaan naar besteling"
                                     class="uk-button uk-button-primary uk-align-right">
                             </form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
