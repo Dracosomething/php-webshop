@@ -40,7 +40,7 @@ class ErrorHelper
         return false;
     }
 
-    public function setErrorCollor(string $collor): bool
+    public function setErrorColor(string $collor): bool
     {
         if (!is_null($collor) && !empty($collor) && isset($collor)) {
             if (is_null($_SESSION["error"]) && empty($_SESSION["error"]) && !isset($_SESSION["error"])) {
@@ -79,7 +79,7 @@ class ErrorHelper
         return "";
     }
 
-    public function getErrorCollor(): string
+    public function getErrorColor(): string
     {
         if (array_key_exists("error", $_SESSION) && (!is_null($_SESSION["error"]) && !empty($_SESSION["error"]) && isset($_SESSION["error"]))) {
             if (!is_null($_SESSION["error"]["collor"]) && !empty($_SESSION["error"]["collor"]) && isset($_SESSION["error"]["collor"])) {
@@ -89,8 +89,13 @@ class ErrorHelper
         return "";
     }
 
-    public function hasError(): bool {
-        return !array_key_exists("error", $_SESSION) && (is_null($_SESSION["error"]) || empty($_SESSION["error"]) || !isset($_SESSION["error"]));
+    public function hasError(): bool
+    {
+        return !array_key_exists("error", $_SESSION) &&
+            
+            empty($_SESSION["error"]) ||
+            (is_null($_SESSION["error"]) ||
+            !isset($_SESSION["error"]));
     }
 
     public function clearError() : void {

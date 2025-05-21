@@ -13,7 +13,7 @@ include_once("template/head.inc.php");
                 <div class="uk-flex-row@xl uk-margin-xlarge-bottom"></div>
                 <div class="uk-flex-row@xl">
                     <?php if (!$ErrorHelper->hasError()): ?>
-                        <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorCollor() ?>" uk-alert>
+                        <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorColor() ?>" uk-alert>
                             <p><?= $ErrorHelper->getErrorMsg() ?></p>
                             <button class="uk-alert-close" type="button" uk-close></button>
                         </div>

@@ -28,7 +28,7 @@ try {
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
     $cartSize = $CartHelper->getCartSize();
-    $cartPrice = $CartHelper->getCartPrise();
+    $cartPrice = $CartHelper->getCartPrize();
 } catch (PDOException $error) {
     echo "Connection failed: " . $e->getMessage();
     die();
