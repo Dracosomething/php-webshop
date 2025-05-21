@@ -13,17 +13,22 @@ try {
    echo "Connection failed: " . $e->getMessage();
 }
 
+
+
 include_once("template/head.inc.php");
 ?>
 
 <main class="uk-container">
    <section class="uk-width-1-3  uk-margin-auto uk-margin-xlarge-top uk-margin-xlarge-bottom">
          <?php if (!$ErrorHelper->hasError()): ?>
-      <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorCollor() ?>" uk-alert>
+      <div id="error-card" class="uk-alert-<?= $ErrorHelper->getErrorColor() ?>" uk-alert>
          <p><?= $ErrorHelper->getErrorMsg() ?></p>
          <button class="uk-alert-close" type="button" uk-close></button>
       </div>
-   <?php endif; ?>
+   <?php 
+      unset($_SESSION["error"]);
+      endif;
+   ?>
       <form name="order" method="post" action="confirm.php">
          <div
             class="uk-card-default uk-card-small uk-flex uk-flex uk-flex-column uk-flex-between uk-padding-small uk-flex-1">
@@ -57,3 +62,4 @@ include_once("template/head.inc.php");
 
 <?php
 include_once("template/foot.inc.php");
+

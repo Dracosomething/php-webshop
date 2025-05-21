@@ -28,7 +28,7 @@ try {
 
     $cartID = $CartHelper->getCartID();
     $cartItems = $CartHelper->getCartItems();
-    $price = $CartHelper->getCartPrise();
+    $price = $CartHelper->getCartPrize();
     $user = $login->getUser();
     $currentDate = date("Y-m-d");
 
